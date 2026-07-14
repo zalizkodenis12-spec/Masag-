@@ -129,12 +129,12 @@
     }
 
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Надсилаємо…';
+    submitBtn.textContent = 'Надсилаємо заявку…';
     statusEl.textContent = '';
     statusEl.className = 'booking-status';
 
     const text = [
-      '✂️ Нова заявка з сайту Барбершоп «El Salvador»',
+      '💆 Нова заявка з сайту Студія масажу «Масаж+»',
       '',
       `Ім'я: ${name}`,
       `Телефон: ${phone}`,
@@ -156,14 +156,14 @@
       if (!response.ok) throw new Error('bad-response');
 
       form.reset();
-      statusEl.textContent = "Дякуємо! Майстер зв'яжеться з вами найближчим часом.";
+      statusEl.textContent = "Дякуємо! Ми зв'яжемося з вами найближчим часом для підтвердження запису.";
       statusEl.className = 'booking-status success';
     } catch (err) {
       statusEl.innerHTML = `Не вдалося надіслати заявку. Зателефонуйте напряму: <a href="tel:${cfg.phone}">${cfg.phoneDisplay}</a>`;
       statusEl.className = 'booking-status error';
     } finally {
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Записатися';
+      submitBtn.textContent = 'Записатися на масаж';
     }
   });
 })();
