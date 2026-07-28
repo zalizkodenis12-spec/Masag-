@@ -203,6 +203,11 @@
   </div>
 </section>
 
+<!-- Wave catalog→stats (yellow→white) -->
+<div class="wave-wrap" style="background:#FFD200">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,20 1440,40 L1440,80 L0,80 Z" fill="#ffffff"/></svg>
+</div>
+
 <!-- ===== STATS ===== -->
 <section class="stats-section s-white" id="stats">
   <div class="container">
@@ -272,6 +277,10 @@
   </div>
 </section>
 
+<!-- Wave stats→reviews (white→yellow) -->
+<div class="wave-wrap" style="background:#ffffff">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,55 C300,10 600,75 900,35 C1100,10 1300,60 1440,40 L1440,80 L0,80 Z" fill="#FFD200"/></svg>
+</div>
 
 <!-- ===== REVIEWS ===== -->
 <section class="reviews-section s-yellow" id="reviews">
@@ -302,6 +311,10 @@
   </div>
 </section>
 
+<!-- Wave reviews→contacts (yellow→white) -->
+<div class="wave-wrap" style="background:#FFD200">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,30 C300,80 600,0 900,50 C1100,80 1300,20 1440,50 L1440,80 L0,80 Z" fill="#ffffff"/></svg>
+</div>
 
 <!-- ===== CONTACTS ===== -->
 <section class="contacts-section s-white" id="contacts">
@@ -356,6 +369,9 @@
 
 <!-- ===== FOOTER ===== -->
 <footer class="site-footer">
+  <div class="wave-wrap" style="background:#ffffff">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,20 C200,60 400,0 600,35 C800,60 1000,10 1200,40 C1340,60 1400,20 1440,30 L1440,60 L0,60 Z" fill="#FFD200"/></svg>
+  </div>
   <div style="background:var(--bg-yellow)">
     <div class="container footer-inner">
       <div class="footer-logo">
@@ -413,33 +429,63 @@
   <div class="prod-body" id="prodBody"></div>
 </div>
 
-<!-- ===== CHECKOUT OVERLAY ===== -->
-<div class="catalog-overlay" id="checkoutOverlay" role="dialog" aria-modal="true" style="z-index:700">
-  <div class="cat-ov-header">
-    <button class="cat-ov-back" id="checkoutBackBtn" aria-label="Закрити кошик">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-      Продовжити покупки
+<!-- ===== CART DRAWER ===== -->
+<div class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Кошик">
+  <div class="cart-drawer-header">
+    <h2 class="cart-drawer-title">Кошик</h2>
+    <button class="cart-drawer-close" id="cartDrawerClose" aria-label="Закрити">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
-    <h2 class="cat-ov-title">Оформлення</h2>
-    <div style="width:24px"></div>
   </div>
-  <div class="cat-ov-body" style="display:flex;flex-direction:column;gap:20px;padding:20px;">
-    <div id="checkoutCartItems" style="display:flex;flex-direction:column;gap:12px;"></div>
-    <div style="font-family:var(--font-display);font-size:1.6rem;font-weight:700;color:var(--text-primary);text-align:right;margin-bottom:10px" id="checkoutTotal">Разом: 0 ₴</div>
-    
-    <form id="checkoutForm" style="display:flex;flex-direction:column;gap:16px;">
-      <input type="text" id="checkoutName" placeholder="Ваше ім'я" required style="padding:16px;border-radius:12px;border:1px solid var(--border);font-family:var(--font-body);font-size:16px;outline:none;background:var(--surface);color:var(--text-primary)">
-      <input type="tel" id="checkoutPhone" placeholder="Номер телефону" required style="padding:16px;border-radius:12px;border:1px solid var(--border);font-family:var(--font-body);font-size:16px;outline:none;background:var(--surface);color:var(--text-primary)">
-      <textarea id="checkoutComment" placeholder="Коментар до замовлення (необов'язково)" rows="3" style="padding:16px;border-radius:12px;border:1px solid var(--border);font-family:var(--font-body);font-size:16px;outline:none;background:var(--surface);color:var(--text-primary);resize:vertical"></textarea>
-      <button type="submit" class="btn btn-cta" id="checkoutSubmitBtn" style="padding:18px;font-size:16px;margin-top:8px">Підтвердити замовлення</button>
+  <div class="cart-drawer-body" id="cartDrawerBody">
+    <div class="cart-empty-msg" id="cartEmptyMsg">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <p>Кошик порожній</p>
+    </div>
+  </div>
+  <div class="cart-drawer-footer">
+    <div class="cart-drawer-total">
+      <span>Разом:</span>
+      <span class="cart-drawer-sum" id="cartDrawerSum">0 ₴</span>
+    </div>
+    <button class="cart-drawer-order-btn" id="cartDrawerOrderBtn">Оформити замовлення →</button>
+  </div>
+</div>
+<div class="cart-drawer-backdrop" id="cartDrawerBackdrop"></div>
+
+<!-- ===== CHECKOUT FORM OVERLAY ===== -->
+<div class="checkout-overlay" id="checkoutOverlay" role="dialog" aria-modal="true">
+  <div class="checkout-inner">
+    <button class="checkout-back" id="checkoutBackBtn" aria-label="Назад до кошика">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Назад до кошика
+    </button>
+    <h2 class="checkout-title">Оформлення замовлення</h2>
+    <div class="checkout-order-summary" id="checkoutCartItems"></div>
+    <div class="checkout-total-row">
+      <span>Загальна сума:</span>
+      <span class="checkout-total-price" id="checkoutTotal">0 ₴</span>
+    </div>
+    <form id="checkoutForm" class="checkout-form">
+      <div class="checkout-field">
+        <label class="checkout-label">Ваше ім'я *</label>
+        <input type="text" id="checkoutName" class="checkout-input" placeholder="Олександр" required>
+      </div>
+      <div class="checkout-field">
+        <label class="checkout-label">Телефон *</label>
+        <input type="tel" id="checkoutPhone" class="checkout-input" placeholder="+380 97 000 0000" required>
+      </div>
+      <div class="checkout-field">
+        <label class="checkout-label">Побажання (необов'язково)</label>
+        <textarea id="checkoutComment" class="checkout-input checkout-textarea" placeholder="Спосіб доставки, зручний час дзвінка..." rows="3"></textarea>
+      </div>
+      <button type="submit" class="checkout-submit-btn" id="checkoutSubmitBtn">Відправити замовлення</button>
     </form>
   </div>
 </div>
 
 <!-- Cart toast -->
 <div class="cart-toast" id="cartToast" aria-live="polite"></div>
-
-
 
 <!-- Mobile CTA -->
 <a href="tel:+380985920595" class="mobile-cta" aria-label="Зателефонувати">

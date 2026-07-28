@@ -41,6 +41,7 @@ const CATALOG = {
   products: [
     { id:'p1', name:'MILERY Олія для тіла',  price:450, time:'—', img:'assets/images/logo.png', desc:'Преміальна олія для тіла від власного бренду MILERY. Зволожує та живить шкіру, надає їй сяяння та шовковистість. Натуральний склад, ніжний аромат. Ідеально підходить після масажу або обгортання.', tags:['товар','олія','milery','зволоження'] },
     { id:'p2', name:'MILERY Скраб для тіла', price:380, time:'—', img:'assets/images/logo.png', desc:'Ексфоліюючий скраб для тіла від бренду MILERY. М\'яко відлущує шкіру, надає гладкість та сяяння. Натуральний склад з морською сіллю та ефірними оліями. Готує шкіру до обгортань.', tags:['товар','скраб','milery','пілінг'] },
+    { id:'p3', name:'MILERY Лосьйон після душу', price:420, time:'—', img:'assets/images/logo.png', desc:'Ніжний лосьйон для тіла MILERY. Швидко вбирається, не залишає липкості. Інтенсивно зволожує та заспокоює шкіру.', tags:['товар','лосьйон','milery','зволоження'] },
   ]
 };
 
@@ -178,35 +179,41 @@ function openProduct(id) {
   const item = allItems.find(i => i.id === id);
   if (!item) return;
   const prodBody = document.getElementById('prodBody');
+  
+  const placeholder = `
+    <div class="prod-photo-placeholder">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+      <span>Фото незабаром</span>
+    </div>
+  `;
+
   prodBody.innerHTML = `
-    <div class="prod-grid">
-      <div class="prod-img-wrap">
-        <img src="${item.img}" alt="${item.name}" onerror="this.src='assets/images/лого.png'">
+    <div class="prod-photo-wrap">
+      ${placeholder}
+    </div>
+    <div class="prod-info">
+      <div class="prod-tags">
+        ${item.tags.map(t => `<span class="prod-tag">${t}</span>`).join('')}
       </div>
-      <div class="prod-content">
-        <div class="prod-tags">
-          ${item.tags.map(t => `<span class="prod-tag">${t}</span>`).join('')}
-        </div>
-        <h2 class="prod-name">${item.name}</h2>
-        ${item.time !== '—' ? `
-        <div class="prod-time-row">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-          <span>Тривалість: ${item.time}</span>
-        </div>` : ''}
-        <p class="prod-desc">${item.desc}</p>
-        <div class="prod-price-row">
-          <div class="prod-price">${item.price} <small>₴</small></div>
-        </div>
-        <button class="prod-add-btn" data-add="${item.id}">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          В кошик
-        </button>
+      <h2 class="prod-name">${item.name}</h2>
+      ${item.time !== '—' ? `
+      <div class="prod-time-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <span>Тривалість: ${item.time}</span>
+      </div>` : ''}
+      <p class="prod-desc">${item.desc}</p>
+      <div class="prod-price-row">
+        <div class="prod-price">${item.price} <small>₴</small></div>
       </div>
+      <button class="prod-add-btn" data-add="${item.id}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        В кошик
+      </button>
     </div>
   `;
   prodBody.querySelector('[data-add]').addEventListener('click', () => {
     addToCart(item.id);
-    gsap.to('.prod-add-btn', { scale: 1.1, duration: 0.12, yoyo: true, repeat: 1 });
+    gsap.to('.prod-add-btn', { scale: 1.05, duration: 0.12, yoyo: true, repeat: 1 });
   });
   prodDetail.classList.add('open');
 }
@@ -227,33 +234,101 @@ document.querySelectorAll('.cat-card').forEach(card => {
   card.addEventListener('keydown', e => { if (e.key === 'Enter') open(); });
 });
 
-// Checkout Modal Logic
+// ===== CART DRAWER & CHECKOUT =====
+const cartDrawer = document.getElementById('cartDrawer');
+const cartDrawerBackdrop = document.getElementById('cartDrawerBackdrop');
+const cartDrawerBody = document.getElementById('cartDrawerBody');
+const cartDrawerSum = document.getElementById('cartDrawerSum');
 const checkoutOverlay = document.getElementById('checkoutOverlay');
 const checkoutCartItems = document.getElementById('checkoutCartItems');
 const checkoutTotal = document.getElementById('checkoutTotal');
 const checkoutForm = document.getElementById('checkoutForm');
-const checkoutBackBtn = document.getElementById('checkoutBackBtn');
+
+function renderCartDrawer() {
+  if (!cart.length) {
+    cartDrawerBody.innerHTML = `
+      <div class="cart-empty-msg">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <p>Кошик порожній</p>
+      </div>
+    `;
+    cartDrawerSum.innerText = '0 ₴';
+    return;
+  }
+  
+  let total = 0;
+  cartDrawerBody.innerHTML = cart.map((item, index) => {
+    const itemTotal = item.price * (item.qty || 1);
+    total += itemTotal;
+    return `
+      <div class="cart-drawer-item">
+        <div class="cart-drawer-item-thumb">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        </div>
+        <div class="cart-drawer-item-info">
+          <div class="cart-drawer-item-name">${item.name}</div>
+          <div class="cart-drawer-item-price">${itemTotal} ₴</div>
+        </div>
+        <div class="cart-drawer-item-controls">
+          <button class="cart-qty-btn" onclick="updateCartQty(${index}, -1)">-</button>
+          <span class="cart-qty-num">${item.qty || 1}</span>
+          <button class="cart-qty-btn" onclick="updateCartQty(${index}, 1)">+</button>
+          <button class="cart-item-del" onclick="removeFromCart(${index})" aria-label="Видалити">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          </button>
+        </div>
+      </div>
+    `;
+  }).join('');
+  cartDrawerSum.innerText = `${total} ₴`;
+}
+
+window.updateCartQty = function(index, delta) {
+  if(cart[index]) {
+    cart[index].qty = (cart[index].qty || 1) + delta;
+    if(cart[index].qty <= 0) cart.splice(index, 1);
+    saveCart();
+    renderCartDrawer();
+  }
+};
+
+window.removeFromCart = function(index) {
+  cart.splice(index, 1);
+  saveCart();
+  renderCartDrawer();
+};
+
+function openCartDrawer() {
+  renderCartDrawer();
+  cartDrawer.classList.add('open');
+  cartDrawerBackdrop.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCartDrawer() {
+  cartDrawer.classList.remove('open');
+  cartDrawerBackdrop.classList.remove('open');
+  document.body.style.overflow = '';
+}
 
 function openCheckout() {
   if (!cart.length) {
     showToast('Кошик порожній!');
     return;
   }
+  closeCartDrawer();
+  
   let total = 0;
   checkoutCartItems.innerHTML = cart.map(item => {
     total += item.price * (item.qty || 1);
     return `
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--surface);border-radius:8px;border:1px solid var(--border);">
-        <div style="font-family:var(--font-ui);font-weight:700;color:var(--text-primary)">
-          ${item.name} <span style="color:var(--text-muted)">x${item.qty||1}</span>
-        </div>
-        <div style="font-family:var(--font-ui);font-weight:900;color:var(--text-primary)">
-          ${item.price * (item.qty || 1)} ₴
-        </div>
+      <div class="checkout-summary-item">
+        <span>${item.name} <small style="color:var(--text-muted)">x${item.qty||1}</small></span>
+        <span>${item.price * (item.qty || 1)} ₴</span>
       </div>
     `;
   }).join('');
-  checkoutTotal.innerText = `Разом: ${total} ₴`;
+  checkoutTotal.innerText = `${total} ₴`;
   
   checkoutOverlay.classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -261,13 +336,16 @@ function openCheckout() {
 
 function closeCheckout() {
   checkoutOverlay.classList.remove('open');
-  document.body.style.overflow = '';
+  openCartDrawer();
 }
 
-if (checkoutBackBtn) checkoutBackBtn.addEventListener('click', closeCheckout);
+document.getElementById('cartDrawerClose').addEventListener('click', closeCartDrawer);
+cartDrawerBackdrop.addEventListener('click', closeCartDrawer);
+document.getElementById('cartDrawerOrderBtn').addEventListener('click', openCheckout);
+document.getElementById('checkoutBackBtn').addEventListener('click', closeCheckout);
 
-// Cart header button opens checkout
-document.getElementById('cartBtnHdr').addEventListener('click', openCheckout);
+// Cart header button opens drawer
+document.getElementById('cartBtnHdr').addEventListener('click', openCartDrawer);
 
 // Telegram bot form submission
 checkoutForm.addEventListener('submit', async (e) => {
