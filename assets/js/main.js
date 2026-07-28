@@ -116,7 +116,9 @@ function renderCatalogItems(cat, query) {
   }
   catOvBody.innerHTML = filtered.map(item => `
     <div class="catalog-item" data-id="${item.id}" role="button" tabindex="0" aria-label="${item.name}">
-      <img class="catalog-item-img" src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.src='assets/images/лого.png'">
+      <div class="catalog-item-img-wrap">
+        <img class="catalog-item-img" src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.src='assets/images/лого.png'">
+      </div>
       <div class="catalog-item-body">
         <div>
           <div class="catalog-item-name">${item.name}</div>
@@ -207,12 +209,105 @@ document.querySelectorAll('.cat-card').forEach(card => {
   card.addEventListener('keydown', e => { if (e.key === 'Enter') open(); });
 });
 
-// Cart float → contacts scroll
-document.getElementById('cartFloat').addEventListener('click', () => {
-  document.getElementById('contacts')?.scrollIntoView({ behavior: 'smooth' });
-});
-document.getElementById('cartBtnHdr').addEventListener('click', () => {
-  document.getElementById('contacts')?.scrollIntoView({ behavior: 'smooth' });
+// Checkout Modal Logic
+const checkoutOverlay = document.getElementById('checkoutOverlay');
+const checkoutCartItems = document.getElementById('checkoutCartItems');
+const checkoutTotal = document.getElementById('checkoutTotal');
+const checkoutForm = document.getElementById('checkoutForm');
+const checkoutBackBtn = document.getElementById('checkoutBackBtn');
+
+function openCheckout() {
+  if (!cart.length) {
+    showToast('Кошик порожній!');
+    return;
+  }
+  let total = 0;
+  checkoutCartItems.innerHTML = cart.map(item => {
+    total += item.price * (item.qty || 1);
+    return `
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--surface);border-radius:8px;border:1px solid var(--border);">
+        <div style="font-family:var(--font-ui);font-weight:700;color:var(--text-primary)">
+          ${item.name} <span style="color:var(--text-muted)">x${item.qty||1}</span>
+        </div>
+        <div style="font-family:var(--font-ui);font-weight:900;color:var(--text-primary)">
+          ${item.price * (item.qty || 1)} ₴
+        </div>
+      </div>
+    `;
+  }).join('');
+  checkoutTotal.innerText = `Разом: ${total} ₴`;
+  
+  checkoutOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCheckout() {
+  checkoutOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+if (checkoutBackBtn) checkoutBackBtn.addEventListener('click', closeCheckout);
+
+// Replace cart floats to open checkout
+document.getElementById('cartFloat').addEventListener('click', openCheckout);
+document.getElementById('cartBtnHdr').addEventListener('click', openCheckout);
+
+// Telegram bot form submission
+checkoutForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  // Вставте ваші токени нижче:
+  const BOT_TOKEN = 'YOUR_BOT_TOKEN_HERE'; 
+  const CHAT_ID = 'YOUR_CHAT_ID_HERE';
+  
+  const name = document.getElementById('checkoutName').value;
+  const phone = document.getElementById('checkoutPhone').value;
+  const comment = document.getElementById('checkoutComment').value;
+  
+  let orderText = `🛍 *Нове замовлення Milerystudio*\\n\\n`;
+  orderText += `👤 *Ім'я:* ${name}\\n`;
+  orderText += `📞 *Телефон:* ${phone}\\n`;
+  if (comment) orderText += `💬 *Коментар:* ${comment}\\n\\n`;
+  
+  let total = 0;
+  cart.forEach(item => {
+    const sum = item.price * (item.qty||1);
+    total += sum;
+    orderText += `▪️ ${item.name} x${item.qty||1} — ${sum} ₴\\n`;
+  });
+  orderText += `\\n💰 *Разом:* ${total} ₴`;
+  
+  const submitBtn = document.getElementById('checkoutSubmitBtn');
+  const ogText = submitBtn.innerText;
+  submitBtn.innerText = 'Відправка...';
+  submitBtn.disabled = true;
+  
+  if (BOT_TOKEN !== 'YOUR_BOT_TOKEN_HERE') {
+    try {
+      await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          text: orderText,
+          parse_mode: 'Markdown'
+        })
+      });
+    } catch(err) {
+      console.error('Помилка відправки в Telegram', err);
+    }
+  } else {
+    console.warn("TELEGRAM BOT NOT CONFIGURED! Add BOT_TOKEN and CHAT_ID in main.js.");
+  }
+  
+  cart = [];
+  saveCart();
+  showToast('Замовлення успішно прийнято!');
+  closeCheckout();
+  checkoutForm.reset();
+  
+  submitBtn.innerText = ogText;
+  submitBtn.disabled = false;
 });
 
 // Close overlays on Escape

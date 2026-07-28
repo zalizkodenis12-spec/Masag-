@@ -311,7 +311,7 @@
 
 <!-- Wave reviews→contacts -->
 <div class="wave-wrap" style="background:#FFD200;margin-bottom:-2px">
-  <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,30 C300,80 600,0 900,50 C1100,80 1300,20 1440,50 L1440,80 L0,80 Z" fill="#fafaf7"/></svg>
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,30 C300,80 600,0 900,50 C1100,80 1300,20 1440,50 L1440,80 L0,80 Z" fill="#ffffff"/></svg>
 </div>
 
 <!-- ===== CONTACTS ===== -->
@@ -367,7 +367,7 @@
 
 <!-- ===== FOOTER ===== -->
 <footer class="site-footer">
-  <div class="wave-wrap" style="background:var(--bg);margin-bottom:0">
+  <div class="wave-wrap" style="background:#ffffff;margin-bottom:0">
     <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,20 C200,60 400,0 600,35 C800,60 1000,10 1200,40 C1340,60 1400,20 1440,30 L1440,60 L0,60 Z" fill="#FFD200"/></svg>
   </div>
   <div style="background:var(--bg-yellow)">
@@ -426,6 +426,29 @@
     </button>
   </div>
   <div class="prod-body" id="prodBody"></div>
+</div>
+
+<!-- ===== CHECKOUT OVERLAY ===== -->
+<div class="catalog-overlay" id="checkoutOverlay" role="dialog" aria-modal="true" style="z-index:700">
+  <div class="cat-ov-header">
+    <button class="cat-ov-back" id="checkoutBackBtn" aria-label="Закрити кошик">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Продовжити покупки
+    </button>
+    <h2 class="cat-ov-title">Оформлення</h2>
+    <div style="width:24px"></div>
+  </div>
+  <div class="cat-ov-body" style="display:flex;flex-direction:column;gap:20px;padding:20px;">
+    <div id="checkoutCartItems" style="display:flex;flex-direction:column;gap:12px;"></div>
+    <div style="font-family:var(--font-display);font-size:1.6rem;font-weight:700;color:var(--text-primary);text-align:right;margin-bottom:10px" id="checkoutTotal">Разом: 0 ₴</div>
+    
+    <form id="checkoutForm" style="display:flex;flex-direction:column;gap:16px;">
+      <input type="text" id="checkoutName" placeholder="Ваше ім'я" required style="padding:16px;border-radius:12px;border:1px solid var(--border);font-family:var(--font-body);font-size:16px;outline:none;background:var(--surface);color:var(--text-primary)">
+      <input type="tel" id="checkoutPhone" placeholder="Номер телефону" required style="padding:16px;border-radius:12px;border:1px solid var(--border);font-family:var(--font-body);font-size:16px;outline:none;background:var(--surface);color:var(--text-primary)">
+      <textarea id="checkoutComment" placeholder="Коментар до замовлення (необов'язково)" rows="3" style="padding:16px;border-radius:12px;border:1px solid var(--border);font-family:var(--font-body);font-size:16px;outline:none;background:var(--surface);color:var(--text-primary);resize:vertical"></textarea>
+      <button type="submit" class="btn btn-cta" id="checkoutSubmitBtn" style="padding:18px;font-size:16px;margin-top:8px">Підтвердити замовлення</button>
+    </form>
+  </div>
 </div>
 
 <!-- Cart toast -->
