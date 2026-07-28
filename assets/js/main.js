@@ -125,8 +125,7 @@ function renderCatalogItems(cat, query) {
   const placeholder = `
     <div class="catalog-item-img-wrap">
       <div class="catalog-item-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-        <span>Фото незабаром</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
       </div>
     </div>`;
 
@@ -134,15 +133,12 @@ function renderCatalogItems(cat, query) {
     <div class="catalog-item" data-id="${item.id}" role="button" tabindex="0" aria-label="${item.name}">
       ${placeholder}
       <div class="catalog-item-body">
-        <div>
-          <div class="catalog-item-name">${item.name}</div>
-          ${item.time !== '—' ? `<div class="catalog-item-time">⏱ ${item.time}</div>` : ''}
-        </div>
+        <div class="catalog-item-name">${item.name}</div>
+        ${item.time !== '—' ? `<div class="catalog-item-time">⏱ ${item.time}</div>` : ''}
         <div class="catalog-item-footer">
-          <div class="catalog-item-price">${item.price} <small>₴</small></div>
+          <div class="catalog-item-price">${item.price}<small>₴</small></div>
           <button class="catalog-item-btn" data-add="${item.id}" aria-label="В кошик ${item.name}">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-            В кошик
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
           </button>
         </div>
       </div>
@@ -188,27 +184,29 @@ function openProduct(id) {
   `;
 
   prodBody.innerHTML = `
-    <div class="prod-photo-wrap">
-      ${placeholder}
-    </div>
-    <div class="prod-info">
-      <div class="prod-tags">
-        ${item.tags.map(t => `<span class="prod-tag">${t}</span>`).join('')}
+    <div class="prod-grid">
+      <div class="prod-img-wrap" onclick="openPhotoFullscreen('${item.img}')">
+        ${placeholder}
       </div>
-      <h2 class="prod-name">${item.name}</h2>
-      ${item.time !== '—' ? `
-      <div class="prod-time-row">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-        <span>Тривалість: ${item.time}</span>
-      </div>` : ''}
-      <p class="prod-desc">${item.desc}</p>
-      <div class="prod-price-row">
-        <div class="prod-price">${item.price} <small>₴</small></div>
+      <div class="prod-info">
+        <div class="prod-tags">
+          ${item.tags.map(t => `<span class="prod-tag">${t}</span>`).join('')}
+        </div>
+        <h2 class="prod-name">${item.name}</h2>
+        ${item.time !== '—' ? `
+        <div class="prod-time-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <span>Тривалість: ${item.time}</span>
+        </div>` : ''}
+        <p class="prod-desc">${item.desc}</p>
+        <div class="prod-price-row">
+          <div class="prod-price">${item.price} <small>₴</small></div>
+        </div>
+        <button class="prod-add-btn" data-add="${item.id}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          В кошик
+        </button>
       </div>
-      <button class="prod-add-btn" data-add="${item.id}">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        В кошик
-      </button>
     </div>
   `;
   prodBody.querySelector('[data-add]').addEventListener('click', () => {
