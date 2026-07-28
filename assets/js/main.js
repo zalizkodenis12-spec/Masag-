@@ -307,14 +307,6 @@ function initGSAP() {
     reveal(el, { from:{opacity:0,x:44}, to:{opacity:1,x:0,duration:0.7,delay:i*0.1,ease:'power2.out'} }, '.about-content');
   });
 
-  // ─── Catalog section ───
-  gsap.utils.toArray('.catalog-intro > *').forEach((el,i) => {
-    reveal(el, { from:{opacity:0,y:32}, to:{opacity:1,y:0,duration:0.6,delay:i*0.1,ease:'power2.out'} }, '.catalog-intro');
-  });
-  gsap.utils.toArray('.cat-card').forEach((el,i) => {
-    reveal(el, { from:{opacity:0,scale:0.88,y:48}, to:{opacity:1,scale:1,y:0,duration:0.85,delay:i*0.2,ease:'power3.out'} }, '.cat-cards');
-  });
-
   // ─── Stats section ───
   gsap.utils.toArray('.stats-intro > *').forEach((el,i) => {
     reveal(el, { from:{opacity:0,y:24}, to:{opacity:1,y:0,duration:0.6,delay:i*0.1,ease:'power2.out'} }, '.stats-intro');

@@ -83,21 +83,21 @@
   </div>
   <div class="container hero-inner">
     <div class="hero-badge g-up" id="heroBadge">✦ Вінниця · 5.0 ★ Google</div>
-    <h1 class="hero-title g-up" id="heroTitle">
+    <h1 class="hero-title g-up" id="heroTitle" style="text-align:center">
       Студія масажу<br>
       <em>Milerystudio</em>
     </h1>
-    <p class="hero-sub g-up" id="heroSub">
+    <p class="hero-sub g-up" id="heroSub" style="text-align:center; margin-left:auto; margin-right:auto">
       <em style="display:inline-block; font-size:1.1em;">Масаж, бандажні обгортання та пресотерапія у центрі Вінниці. Відновіть свою енергію, красу та гармонію тіла вже сьогодні.</em>
     </p>
-    <div class="hero-actions g-up" id="heroActions">
+    <div class="hero-actions g-up" id="heroActions" style="justify-content:center">
       <a href="#catalog" class="btn btn-cta btn-lg" id="hero-catalog">Перейти до каталогу</a>
       <a href="tel:+380985920595" class="btn btn-dark btn-lg" id="hero-call">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         Зателефонувати
       </a>
     </div>
-    <div class="hero-meta g-in" id="heroMeta">
+    <div class="hero-meta g-in" id="heroMeta" style="justify-content:center">
       <span>вул. Театральна, 30, Вінниця</span>
       <span>·</span>
       <span>Пн–Сб: 09:00–20:00</span>
@@ -156,7 +156,7 @@
         Ми — студія масажу та тілесних практик у центрі Вінниці, на вул.&nbsp;Театральній&nbsp;30. Власний бренд косметики MILERY, авторські техніки обгортань і масажу, сертифіковані спеціалісти — це все про нас.
       </p>
       <ul class="about-list g-up">
-        <li>Масаж усіх видів — класичний, лікувальний, антицелюлітний, Wood</li>
+        <li style="font-family:var(--font-display)">Масаж усіх видів — класичний, лікувальний, антицелюлітний, Wood</li>
         <li>Бандажні обгортання — авторські та по провідних методиках</li>
         <li>Апаратний масаж: пресотерапія, вібромасаж, міостимуляція</li>
         <li>Карамельний ліполіз та дитячий масаж</li>
@@ -174,11 +174,16 @@
   </div>
 </section>
 
+<!-- Wave about->catalog -->
+<div class="wave-wrap" style="background:var(--bg);margin-bottom:-2px">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#FFD200"/></svg>
+</div>
+
 <!-- ===== CATALOG (main section) ===== -->
-<section class="catalog-section s-white" id="catalog">
+<section class="catalog-section s-yellow" id="catalog">
   <div class="container">
     <div class="catalog-intro">
-      <h2 class="section-title g-up" style="font-size:clamp(2.2rem,5vw,3.8rem)">Оберіть для себе</h2>
+      <h2 class="section-title" style="font-size:clamp(2.2rem,5vw,3.8rem);color:var(--text-primary)">Оберіть для себе</h2>
     </div>
     <div class="cat-cards">
       <!-- Послуги -->
@@ -276,7 +281,7 @@
 </div>
 
 <!-- ===== REVIEWS ===== -->
-<section class="reviews-section s-yellow section" id="reviews">
+<section class="reviews-section s-yellow" id="reviews">
   <div class="container">
     <div class="section-head center-head">
       <h2 class="section-title g-up" style="color:var(--text-on-yellow)">Відгуки клієнтів</h2>
@@ -310,7 +315,7 @@
 </div>
 
 <!-- ===== CONTACTS ===== -->
-<section class="contacts-section section s-white" id="contacts">
+<section class="contacts-section s-white" id="contacts">
   <div class="container">
     <div class="section-head center-head">
       <h2 class="section-title g-up" style="color:var(--text-primary)">Контакти</h2>
