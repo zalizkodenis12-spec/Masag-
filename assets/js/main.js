@@ -316,6 +316,10 @@ function initGSAP() {
   });
 
   // ─── Stats section ───
+  gsap.utils.toArray('.stats-intro > *').forEach((el,i) => {
+    reveal(el, { from:{opacity:0,y:24}, to:{opacity:1,y:0,duration:0.6,delay:i*0.1,ease:'power2.out'} }, '.stats-intro');
+  });
+
   const statsAnimated = { done: false };
   const statsTrigger = ScrollTrigger.create({
     trigger: '#stats',
@@ -329,9 +333,9 @@ function initGSAP() {
 
   const statConfigs = [
     { circleId:'sc1', numId:'sn1', value:95,  max:100, format: v => Math.round(v) },
-    { circleId:'sc2', numId:'sn2', value:100, max:100, format: () => '5.0' },
+    { circleId:'sc2', numId:'sn2', value:100, max:100, format: v => (v > 0 ? (v * 5 / 100).toFixed(1) : '0.0') },
     { circleId:'sc3', numId:'sn3', value:100, max:100, format: v => Math.round(v * 6 / 100) },
-    { circleId:'sc4', numId:'sn4', value:87,  max:100, format: v => Math.round(v * 500 / 87) },
+    { circleId:'sc4', numId:'sn4', value:100, max:100, format: v => Math.round(v * 500 / 100) },
   ];
   const circumference = 2 * Math.PI * 55; // r=55
 
@@ -345,22 +349,30 @@ function initGSAP() {
       const numEl  = document.getElementById(s.numId);
       if (!circle || !numEl) return;
       const targetOffset = circumference * (1 - s.value / 100);
-      gsap.fromTo(circle, { strokeDashoffset: circumference }, {
-        strokeDashoffset: targetOffset, duration: 1.6, delay: i * 0.2, ease: 'power2.out',
+      
+      const obj = { val: 0 };
+      gsap.to(obj, {
+        val: s.value,
+        duration: 1.6,
+        delay: i * 0.2,
+        ease: 'power2.out',
         onUpdate: function() {
-          const progress = (circumference - parseFloat(circle.style.strokeDashoffset || circumference)) / circumference;
-          numEl.textContent = s.format(progress * s.value);
+          const currentOffset = circumference * (1 - obj.val / 100);
+          circle.style.strokeDashoffset = currentOffset;
+          numEl.textContent = s.format(obj.val);
         },
-        onComplete: () => { numEl.textContent = s.format(s.value); }
+        onComplete: () => { 
+          circle.style.strokeDashoffset = targetOffset;
+          numEl.textContent = s.format(s.value); 
+        }
       });
     });
   }
   function resetStats() {
     statConfigs.forEach(s => {
       const circle = document.getElementById(s.circleId);
-      const numEl  = document.getElementById(s.numId);
       if (circle) gsap.set(circle, { strokeDashoffset: circumference });
-      if (numEl) numEl.textContent = '0';
+      // Do not reset numEl.textContent to '0' to avoid hanging at 0 if animation is interrupted
     });
     gsap.utils.toArray('.stat-item').forEach(el => gsap.set(el, { opacity:0, scale:0.82 }));
   }
@@ -416,7 +428,10 @@ function initGSAP() {
 
 // Run GSAP when ready
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => setTimeout(initGSAP, 80));
+  document.addEventListener('DOMContentLoaded', () => setTimeout(initGSAP, 400));
 } else {
-  setTimeout(initGSAP, 80);
+  setTimeout(initGSAP, 400);
 }
+window.addEventListener('load', () => {
+  if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+});

@@ -183,7 +183,7 @@ h1,h2,h3{font-family:var(--font-display)}
 .cat-card-sub{font-size:16px;color:var(--text-secondary)}
 .cat-card-icon{font-size:2.2rem;margin-bottom:12px;display:block;color:var(--accent)}
 .cat-card-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:700;line-height:1.1;margin-bottom:8px;letter-spacing:-0.01em}
-.cat-card-sub{font-family:var(--font-ui);font-size:13px;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:20px}
+.cat-card-sub{font-family:var(--font-ui);font-size:13px;font-weight:600;color:var(--text-secondary);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:20px}
 .cat-card-arrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-ui);font-size:12px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);transition:gap var(--tr)}
 .cat-card:hover .cat-card-arrow{gap:14px}
 
@@ -257,9 +257,7 @@ h1,h2,h3{font-family:var(--font-display)}
 .stat-circle-bg{fill:none;stroke:rgba(22,18,10,0.12);stroke-width:8}
 
 /* Helpers */
-.s-white { background: var(--bg) !important; }
-.s-yellow { background: var(--bg-yellow) !important; }
-.s-cream { background: var(--surface) !important; }
+
 .container{width:100%;max-width:1440px;margin:0 auto;padding:0 24px}
 .g-up, .g-left, .g-scale{opacity:0}
 .wave-wrap{width:100%;display:flex;line-height:0;margin-bottom:-1px}
