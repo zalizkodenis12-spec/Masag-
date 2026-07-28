@@ -33,17 +33,11 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         098 592 05 95
       </a>
-      <a href="https://instagram.com/milerystudio" target="_blank" rel="noopener" class="social-sq" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-      </a>
-      <a href="https://t.me/milerystudio" target="_blank" rel="noopener" class="social-sq" aria-label="Telegram">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 5L2 12.5l7 1M21 5l-4 14-8-5.5M21 5L9 13.5m0 0V19l3-2.5"/></svg>
-      </a>
       <button class="cart-btn-hdr" id="cartBtnHdr" aria-label="Кошик">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         <span class="cart-count" id="cartCountHdr">0</span>
       </button>
-      <a href="#contacts" class="btn btn-cta btn-sm">Записатись</a>
+      <a href="#catalog" class="btn btn-cta btn-sm">Перейти до каталогу</a>
     </div>
 
     <button class="burger" id="burgerBtn" aria-label="Меню" aria-expanded="false">
@@ -82,7 +76,7 @@
     <div class="hero-overlay"></div>
   </div>
   <div class="container hero-inner">
-    <div class="hero-badge g-up" id="heroBadge">✦ Вінниця · 5.0 ★ Google</div>
+    <div class="hero-badge g-up" id="heroBadge" style="display:block;text-align:center;width:100%">❖ Вінниця · 5.0 ★ Google</div>
     <h1 class="hero-title g-up" id="heroTitle" style="text-align:center">
       Студія масажу<br>
       <em>Milerystudio</em>
@@ -156,11 +150,11 @@
         Ми — студія масажу та тілесних практик у центрі Вінниці, на вул.&nbsp;Театральній&nbsp;30. Власний бренд косметики MILERY, авторські техніки обгортань і масажу, сертифіковані спеціалісти — це все про нас.
       </p>
       <ul class="about-list g-up">
-        <li style="font-family:var(--font-display)">Масаж усіх видів — класичний, лікувальний, антицелюлітний, Wood</li>
+        <li>Масаж усіх видів — класичний, лікувальний, антицелюлітний, Wood</li>
         <li>Бандажні обгортання — авторські та по провідних методиках</li>
         <li>Апаратний масаж: пресотерапія, вібромасаж, міостимуляція</li>
         <li>Карамельний ліполіз та дитячий масаж</li>
-        <li>Власний бренд косметики ✨&nbsp;MILERY</li>
+        <li>Власний бренд косметики ✨ MILERY</li>
         <li>Пн–Сб: 09:00–20:00</li>
       </ul>
       <div class="about-actions g-up">
@@ -174,7 +168,7 @@
   </div>
 </section>
 
-<!-- Wave about->catalog -->
+<!-- Wave about→catalog -->
 <div class="wave-wrap" style="background:var(--bg);margin-bottom:-2px">
   <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#FFD200"/></svg>
 </div>
@@ -184,10 +178,12 @@
   <div class="container">
     <div class="catalog-intro">
       <h2 class="section-title" style="font-size:clamp(2.2rem,5vw,3.8rem);color:var(--text-primary)">Оберіть для себе</h2>
+      <p style="color:rgba(22,18,10,0.65);margin-top:12px;font-size:1.1rem;font-family:var(--font-display);font-style:italic">Оберіть послугу або товар під свої потреби</p>
     </div>
     <div class="cat-cards">
       <!-- Послуги -->
       <div class="cat-card" id="catServices" data-cat="services" role="button" tabindex="0" aria-label="Відкрити каталог послуг">
+        <div class="cat-card-icon">💆</div>
         <div class="cat-card-header">
           <h3 class="cat-card-title">Послуги</h3>
           <p class="cat-card-sub">35+ процедур для тіла</p>
@@ -196,6 +192,7 @@
       </div>
       <!-- Товари -->
       <div class="cat-card" id="catProducts" data-cat="products" role="button" tabindex="0" aria-label="Відкрити каталог товарів">
+        <div class="cat-card-icon">🧴</div>
         <div class="cat-card-header">
           <h3 class="cat-card-title">Товари</h3>
           <p class="cat-card-sub">Косметика MILERY</p>
@@ -205,6 +202,11 @@
     </div>
   </div>
 </section>
+
+<!-- Wave catalog→stats (yellow→white) -->
+<div class="wave-wrap" style="background:#FFD200;margin-bottom:-2px">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,20 1440,40 L1440,80 L0,80 Z" fill="#ffffff"/></svg>
+</div>
 
 <!-- ===== STATS ===== -->
 <section class="stats-section s-white" id="stats">
@@ -264,7 +266,7 @@
             <circle class="stat-circle-fill" id="sc4" cx="70" cy="70" r="55" stroke-dasharray="345.4" stroke-dashoffset="345.4"/>
           </svg>
           <div class="stat-circle-label">
-            <span class="stat-number" data-target="500" id="sn4">500</span>
+            <span class="stat-number" data-target="50" id="sn4">50</span>
             <span class="stat-unit">+ на міс.</span>
           </div>
         </div>
@@ -276,7 +278,7 @@
 </section>
 
 <!-- Wave stats→reviews -->
-<div class="wave-wrap" style="background:#fafaf7;margin-bottom:-2px">
+<div class="wave-wrap" style="background:#ffffff;margin-bottom:-2px">
   <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,55 C300,10 600,75 900,35 C1100,10 1300,60 1440,40 L1440,80 L0,80 Z" fill="#FFD200"/></svg>
 </div>
 
@@ -374,7 +376,6 @@
     <div class="container footer-inner">
       <div class="footer-logo">
         <div class="footer-avatar"><img src="assets/images/avatar_new.jpg" alt="Milerystudio"></div>
-        <div class="footer-brand" style="color:var(--text-primary)"><span>Milery</span>studio</div>
       </div>
       <nav class="footer-nav">
         <a href="#about" style="color:var(--text-primary)">Про нас</a>

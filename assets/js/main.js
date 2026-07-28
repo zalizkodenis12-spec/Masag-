@@ -96,7 +96,10 @@ function openCatalog(cat) {
   renderCatalogItems(cat, '');
   catSearch.value = '';
   catOverlay.classList.add('open');
-  catSearch.focus();
+  // Показуємо/ховаємо пошук для товарів
+  const searchWrap = document.querySelector('.cat-search-wrap');
+  if (searchWrap) searchWrap.style.display = cat === 'products' ? 'none' : '';
+  if (cat !== 'products') catSearch.focus();
 }
 
 function closeCatalog() {
@@ -114,11 +117,21 @@ function renderCatalogItems(cat, query) {
     catOvBody.innerHTML = '<div class="cat-ov-empty">Нічого не знайдено 😔<br>Спробуйте інший запит</div>';
     return;
   }
-  catOvBody.innerHTML = filtered.map(item => `
-    <div class="catalog-item" data-id="${item.id}" role="button" tabindex="0" aria-label="${item.name}">
-      <div class="catalog-item-img-wrap">
-        <img class="catalog-item-img" src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.src='assets/images/лого.png'">
+  const gridEl = document.createElement('div');
+  gridEl.className = cat === 'services' ? 'cat-ov-body-inner' : 'cat-ov-grid';
+  
+  // Плейсхолдер замість реальних фото
+  const placeholder = `
+    <div class="catalog-item-img-wrap">
+      <div class="catalog-item-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        <span>Фото незабаром</span>
       </div>
+    </div>`;
+
+  gridEl.innerHTML = filtered.map(item => `
+    <div class="catalog-item" data-id="${item.id}" role="button" tabindex="0" aria-label="${item.name}">
+      ${placeholder}
       <div class="catalog-item-body">
         <div>
           <div class="catalog-item-name">${item.name}</div>
@@ -134,9 +147,14 @@ function renderCatalogItems(cat, query) {
       </div>
     </div>
   `).join('');
+  
+  catOvBody.innerHTML = '';
+  catOvBody.appendChild(gridEl);
+  catOvBody.style.padding = cat === 'products' ? '0' : '';
+  catOvBody.style.display = 'block';
 
   // Item click → product detail
-  catOvBody.querySelectorAll('.catalog-item').forEach(el => {
+  (gridEl || catOvBody).querySelectorAll('.catalog-item').forEach(el => {
     el.addEventListener('click', e => {
       if (e.target.closest('[data-add]')) return; // don't open if clicking add button
       openProduct(el.dataset.id);
@@ -371,8 +389,7 @@ function initGSAP() {
   // ─── Logo float ───
   gsap.to('.logo-avatar', { y:-5, duration:2, ease:'sine.inOut', yoyo:true, repeat:-1 });
 
-  // ─── Float cart entrance ───
-  gsap.fromTo('.cart-float', { opacity:0, scale:0, rotate:-45 }, { opacity:1, scale:1, rotate:0, duration:0.8, delay:2.2, ease:'back.out(2)' });
+  // ─── Float cart — NO entrance animation, always visible ───
 
   // helper – scroll-triggered reveal
   function reveal(el, vars, triggerEl) {
