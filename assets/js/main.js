@@ -118,7 +118,7 @@ function renderCatalogItems(cat, query) {
     return;
   }
   const gridEl = document.createElement('div');
-  gridEl.className = cat === 'services' ? 'cat-ov-body-inner' : 'cat-ov-grid';
+  gridEl.className = 'cat-ov-grid';
   
   // Плейсхолдер замість реальних фото
   const placeholder = `
@@ -150,7 +150,7 @@ function renderCatalogItems(cat, query) {
   
   catOvBody.innerHTML = '';
   catOvBody.appendChild(gridEl);
-  catOvBody.style.padding = cat === 'products' ? '0' : '';
+  catOvBody.style.padding = '0';
   catOvBody.style.display = 'block';
 
   // Item click → product detail
@@ -266,8 +266,7 @@ function closeCheckout() {
 
 if (checkoutBackBtn) checkoutBackBtn.addEventListener('click', closeCheckout);
 
-// Replace cart floats to open checkout
-document.getElementById('cartFloat').addEventListener('click', openCheckout);
+// Cart header button opens checkout
 document.getElementById('cartBtnHdr').addEventListener('click', openCheckout);
 
 // Telegram bot form submission
