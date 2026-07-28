@@ -287,7 +287,7 @@ function initGSAP() {
         trigger: triggerEl || el,
         start: 'top 85%',
         end: 'bottom 15%',
-        toggleActions: 'play none none reverse'
+        toggleActions: 'play reverse play reverse'
       }
     });
   }
@@ -320,7 +320,10 @@ function initGSAP() {
   const statsTrigger = ScrollTrigger.create({
     trigger: '#stats',
     start: 'top 80%',
+    end: 'bottom 20%',
     onEnter: () => animateStats(),
+    onLeave: () => resetStats(),
+    onEnterBack: () => animateStats(),
     onLeaveBack: () => resetStats()
   });
 
@@ -384,7 +387,7 @@ function initGSAP() {
   gsap.utils.toArray('.wave-wrap').forEach(el => {
     gsap.fromTo(el, { opacity:0 }, {
       opacity:1, duration:0.9,
-      scrollTrigger:{ trigger:el, start:'top 95%', toggleActions:'play none none reverse' }
+      scrollTrigger:{ trigger:el, start:'top 95%', end: 'bottom 5%', toggleActions:'play reverse play reverse' }
     });
   });
 
