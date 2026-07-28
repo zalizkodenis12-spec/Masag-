@@ -4,36 +4,50 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Milerystudio — Студія масажу та обгортань у Вінниці | вул. Театральна, 30</title>
-<meta name="description" content="Milerystudio — студія масажу, бандажних обгортань та пресотерапії у Вінниці. вул. Театральна, 30. Масаж, обгортання, апаратний масаж, карамельний ліполіз. 5.0★ Google. Запис: 098 592 05 95.">
+<meta name="description" content="Milerystudio — студія масажу, бандажних обгортань та пресотерапії у центрі Вінниці. вул. Театральна, 30. 5.0★ Google. Запис: 098 592 05 95.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Nunito:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Nunito:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- ===== HEADER ===== -->
 <header class="site-header" id="siteHeader">
-  <div class="container header-inner">
-    <a href="#top" class="logo">
-      <span class="logo-mark" id="logoMark">
-        <img src="assets/images/лого.png" alt="Milerystudio логотип">
-      </span>
-      <span class="logo-text"><strong>Milery</strong>studio</span>
-    </a>
+  <div class="header-inner">
+    <!-- Left: Navigation -->
     <nav class="main-nav" id="mainNav">
       <a href="#services">Послуги</a>
       <a href="#about">Про нас</a>
       <a href="#reviews">Відгуки</a>
       <a href="#contacts">Контакти</a>
     </nav>
-    <div class="header-actions">
-      <a href="tel:+380985920595" class="header-phone">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+
+    <!-- Center: Logo avatar only -->
+    <div class="logo-center">
+      <a href="#top" class="logo-avatar" id="logoMark" aria-label="Milerystudio — на головну">
+        <img src="assets/images/лого.png" alt="Milerystudio">
+      </a>
+    </div>
+
+    <!-- Right: Social squares + call -->
+    <div class="header-socials">
+      <a href="tel:+380985920595" class="header-call" aria-label="Зателефонувати">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         <span>098 592 05 95</span>
       </a>
-      <a href="#booking" class="btn btn-cta btn-sm">Записатись</a>
+      <a href="https://instagram.com/milerystudio" target="_blank" rel="noopener" class="social-sq" id="hdr-ig" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="https://t.me/milerystudio" target="_blank" rel="noopener" class="social-sq" id="hdr-tg" aria-label="Telegram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 5L2 12.5l7 1M21 5l-4 14-8-5.5M21 5L9 13.5m0 0V19l3-2.5"/></svg>
+      </a>
+      <a href="viber://chat?number=%2B380985920595" class="social-sq" id="hdr-vb" aria-label="Viber">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5.4 3.2C4 3.7 2.3 5.8 2 7.6c-.7 4.5 1.4 9 5.4 11.7 1.4.9 3 1.5 4.6 1.7v2l2.4-2.4c4.5-.7 7.8-4.5 7.6-9C21.8 6.3 18 2.5 13.4 2c-2.6-.3-5.5.2-8 1.2z"/><path d="M9 8.5c.4 1 .8 2 1.4 2.9.8 1.2 1.9 2.3 3.1 3.1.9.6 1.9 1 2.9 1.4"/></svg>
+      </a>
+      <a href="#booking" class="btn btn-cta btn-sm" id="hdr-book">Записатись</a>
     </div>
+
     <button class="burger" id="burgerBtn" aria-label="Меню" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -46,95 +60,179 @@
   <a href="#about">Про нас</a>
   <a href="#reviews">Відгуки</a>
   <a href="#contacts">Контакти</a>
-  <a href="tel:+380985920595" class="btn btn-outline">Зателефонувати</a>
+  <div class="social-row">
+    <a href="https://instagram.com/milerystudio" target="_blank" rel="noopener" class="social-sq" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    </a>
+    <a href="https://t.me/milerystudio" target="_blank" rel="noopener" class="social-sq" aria-label="Telegram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 5L2 12.5l7 1M21 5l-4 14-8-5.5M21 5L9 13.5m0 0V19l3-2.5"/></svg>
+    </a>
+    <a href="viber://chat?number=%2B380985920595" class="social-sq" aria-label="Viber">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5.4 3.2C4 3.7 2.3 5.8 2 7.6c-.7 4.5 1.4 9 5.4 11.7 1.4.9 3 1.5 4.6 1.7v2l2.4-2.4c4.5-.7 7.8-4.5 7.6-9C21.8 6.3 18 2.5 13.4 2c-2.6-.3-5.5.2-8 1.2z"/></svg>
+    </a>
+  </div>
+  <a href="tel:+380985920595" class="btn btn-dark">Зателефонувати</a>
   <a href="#booking" class="btn btn-cta">Записатися</a>
 </div>
 
 <main id="top">
 
-  <!-- HERO -->
-  <section class="hero">
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
     <div class="hero-bg">
-      <img src="assets/images/Знімок екрана 2026-07-28 154343.png" alt="Milerystudio — масаж у Вінниці" loading="eager">
-      <div class="hero-scrim"></div>
+      <img src="assets/images/Знімок екрана 2026-07-28 154343.png" alt="Milerystudio — студія масажу у Вінниці" loading="eager" id="heroBgImg">
+      <div class="hero-overlay"></div>
     </div>
     <div class="container hero-inner">
-      <div class="hero-badge reveal">
-        ✦ Вінниця · 5.0 ★ на Google
-      </div>
-      <h1 class="hero-title reveal">
+      <div class="hero-badge gsap-fade-up">✦ Вінниця · 5.0 ★ Google</div>
+      <h1 class="hero-title gsap-fade-up">
         Студія масажу<br>
         <em>Milerystudio</em>
       </h1>
-      <p class="hero-sub reveal">
-        Масаж, бандажні обгортання та пресотерапія у центрі Вінниці. Авторські техніки, сертифіковані спеціалісти, преміальна косметика. Відчуй різницю з першого сеансу.
+      <p class="hero-sub gsap-fade-up">
+        Масаж, бандажні обгортання та пресотерапія у центрі Вінниці. Авторські методики, преміальна косметика та справжня турбота про ваше тіло.
       </p>
-      <div class="hero-actions reveal">
-        <a href="#booking" class="btn btn-cta btn-lg">Записатися на сеанс</a>
-        <a href="tel:+380985920595" class="btn btn-outline btn-lg">
+      <div class="hero-actions gsap-fade-up">
+        <a href="#booking" class="btn btn-cta btn-lg" id="hero-cta">Записатися на сеанс</a>
+        <a href="tel:+380985920595" class="btn btn-dark btn-lg" id="hero-call">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           Зателефонувати
         </a>
       </div>
-      <div class="hero-meta reveal">
-        <span>вул. Театральна, 30, Вінниця</span>
+      <div class="hero-meta gsap-fade-in">
+        <span>📍 вул. Театральна, 30, Вінниця</span>
         <span>·</span>
-        <span>Пн–Сб: 09:00–20:00</span>
+        <span>🕒 Пн–Сб: 09:00–20:00</span>
         <span>·</span>
-        <span>1 176 підписників в Instagram</span>
+        <span>📸 1 176 підписників</span>
       </div>
     </div>
   </section>
 
-  <!-- TRUST BAR -->
-  <section class="trust-bar">
+  <!-- Wave: hero → trust (yellow) -->
+  <div class="wave-wrap" style="background:#fafaf7; margin-bottom:-2px;">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,45 C240,90 480,0 720,45 C960,90 1200,0 1440,45 L1440,90 L0,90 Z" fill="#FFD200"/>
+    </svg>
+  </div>
+
+  <!-- ===== TRUST BAR ===== -->
+  <section class="trust-bar" id="trust">
     <div class="container trust-grid">
-      <div class="trust-item reveal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <div class="trust-item gsap-fade-up">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
         <div>
-          <strong>Сертифіковані спеціалісти</strong>
-          <span>Досвідчені майстри масажу та тілесних практик</span>
+          <strong>Сертифіковані майстри</strong>
+          <span>Досвідчені спеціалісти з авторськими техніками</span>
         </div>
       </div>
-      <div class="trust-item reveal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg>
+      <div class="trust-item gsap-fade-up">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg>
+        </div>
         <div>
           <strong>Авторські методики</strong>
           <span>MILERY, Mazaky Leyla, бандажні обгортання</span>
         </div>
       </div>
-      <div class="trust-item reveal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <div class="trust-item gsap-fade-up">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
         <div>
           <strong>Преміальна косметика</strong>
-          <span>Pelovit-R, Green Health, BrunoVassari та інші</span>
+          <span>Pelovit-R, Green Health, BrunoVassari</span>
         </div>
       </div>
-      <div class="trust-item reveal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+      <div class="trust-item gsap-fade-up">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        </div>
         <div>
-          <strong>Зручний запис</strong>
-          <span>Онлайн або у Direct Instagram — швидко і просто</span>
+          <strong>5.0 ★ на Google</strong>
+          <span>18 відгуків задоволених клієнтів</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SERVICES / PRICE LIST -->
-  <section class="section" id="services">
+  <!-- Wave: trust (yellow) → about (white) -->
+  <div class="wave-wrap" style="background:#FFD200; margin-bottom:-2px;">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,45 C360,0 720,90 1080,45 C1260,22 1380,65 1440,45 L1440,90 L0,90 Z" fill="#ffffff"/>
+    </svg>
+  </div>
+
+  <!-- ===== ABOUT (4 photos + content) ===== -->
+  <section class="about-section" id="about">
+    <div class="container about-grid">
+      <!-- 4 photos -->
+      <div class="about-photos">
+        <div class="about-photo gsap-scale">
+          <img src="assets/images/Знімок екрана 2026-07-28 154343.png" alt="Масаж у Milerystudio" loading="lazy">
+        </div>
+        <div class="about-photo gsap-scale">
+          <img src="assets/images/Знімок екрана 2026-07-14 132337.png" alt="Студія Milerystudio" loading="lazy">
+        </div>
+        <div class="about-photo gsap-scale">
+          <img src="assets/images/маряна.png" alt="Майстер Milerystudio" loading="lazy">
+        </div>
+        <div class="about-photo gsap-scale">
+          <img src="assets/images/Знімок екрана 2026-07-14 132122.png" alt="Процедура в Milerystudio" loading="lazy">
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="about-content">
+        <div class="about-tag gsap-fade-up">✦ Про студію</div>
+        <h2 class="section-title gsap-fade-up">Milerystudio — де тіло відновлюється, а душа відпочиває</h2>
+        <p class="about-sub gsap-fade-up">Чому обрати нас?</p>
+        <p class="gsap-fade-up">
+          Ми — студія масажу та тілесних практик у центрі Вінниці, на вул. Театральній 30. Власний бренд косметики MILERY, авторські техніки обгортань і масажу, сертифіковані спеціалісти — це все про нас.
+        </p>
+        <ul class="about-list gsap-fade-up">
+          <li>Масаж усіх видів — класичний, лікувальний, антицелюлітний, Wood</li>
+          <li>Бандажні обгортання — авторські та по провідних методиках</li>
+          <li>Апаратний масаж: пресотерапія, вібромасаж, міостимуляція</li>
+          <li>Карамельний ліполіз та дитячий масаж</li>
+          <li>Власний бренд косметики ✨MILERY</li>
+          <li>Відкриті Пн–Сб з 09:00 до 20:00</li>
+        </ul>
+        <div class="about-actions gsap-fade-up">
+          <a href="#services" class="btn btn-cta">Дивитись послуги</a>
+          <a href="https://instagram.com/milerystudio" target="_blank" rel="noopener" class="btn btn-ghost">
+            @milerystudio
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave: about (white) → services (yellow) -->
+  <div class="wave-wrap" style="background:#ffffff; margin-bottom:-2px;">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 C180,80 360,0 540,50 C720,90 900,10 1080,60 C1260,90 1380,20 1440,40 L1440,90 L0,90 Z" fill="#FFD200"/>
+    </svg>
+  </div>
+
+  <!-- ===== SERVICES / PRICE ===== -->
+  <section class="services-section section" id="services">
     <div class="container">
-      <div class="section-head reveal" style="text-align:center; display:flex; flex-direction:column; align-items:center;">
-        <h2 class="section-title">Послуги та Прайс</h2>
-        <p class="section-desc">Широкий спектр масажних технік та процедур для тіла — від класичного розслаблення до авторських бандажних обгортань. Кожна процедура підбирається індивідуально.</p>
+      <div class="section-head center-head">
+        <span class="section-label gsap-fade-up">Прайс-лист</span>
+        <h2 class="section-title gsap-fade-up">Послуги та ціни</h2>
+        <p class="section-desc gsap-fade-up">Широкий спектр процедур для тіла — від класичного масажу до авторських бандажних обгортань</p>
       </div>
 
       <div class="price-grid">
-
-        <!-- Масаж -->
-        <div class="price-card reveal">
+        <!-- Масаж тіла -->
+        <div class="price-card gsap-fade-up">
           <div class="price-card-header">
             <div class="price-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="24" height="24"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
             </div>
             <h3>Масаж тіла</h3>
           </div>
@@ -147,53 +245,52 @@
             <li><span class="price-name">Gummy + Wood масаж</span><span class="price-time">1 год</span><span class="price-val">1000 ₴</span></li>
             <li><span class="price-name">Масаж обличчя</span><span class="price-time">1 год</span><span class="price-val">800 ₴</span></li>
             <li><span class="price-name">Масаж обличчя + ліфтинг маска</span><span class="price-time">1 год</span><span class="price-val">1000 ₴</span></li>
-            <li><span class="price-name">Обгортання + Пресотерапія</span><span class="price-time">1.5 год</span><span class="price-val">1100 ₴</span></li>
           </ul>
-          <a href="#booking" class="price-cta btn btn-outline btn-sm">Записатися →</a>
+          <a href="#contacts" class="price-cta btn btn-dark btn-sm">Записатися →</a>
         </div>
 
-        <!-- Старший спеціаліст -->
-        <div class="price-card reveal">
+        <!-- Лікувальний -->
+        <div class="price-card gsap-fade-up">
           <div class="price-card-header">
             <div class="price-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="24" height="24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
             </div>
             <h3>Лікувальний масаж</h3>
           </div>
           <ul class="price-list">
             <li><span class="price-name">Загальний масаж тіла</span><span class="price-time">1.5 год</span><span class="price-val">1000 ₴</span></li>
-            <li><span class="price-name">Масаж стоп + гомілки</span><span class="price-time">50 хв</span><span class="price-val">500 ₴</span></li>
+            <li><span class="price-name">Стопи + гомілки</span><span class="price-time">50 хв</span><span class="price-val">500 ₴</span></li>
             <li><span class="price-name">Лікувально-профілактичний</span><span class="price-time">1 год</span><span class="price-val">750 ₴</span></li>
             <li><span class="price-name">Вісцеральний масаж (животик)</span><span class="price-time">50 хв</span><span class="price-val">600 ₴</span></li>
             <li><span class="price-name">Тейпування тіла</span><span class="price-time">—</span><span class="price-val">200 ₴</span></li>
+            <li><span class="price-name">Обгортання + Пресотерапія</span><span class="price-time">1.5 год</span><span class="price-val">1100 ₴</span></li>
           </ul>
-          <a href="#booking" class="price-cta btn btn-outline btn-sm">Записатися →</a>
+          <a href="#contacts" class="price-cta btn btn-dark btn-sm">Записатися →</a>
         </div>
 
-        <!-- Бандажні обгортання -->
-        <div class="price-card reveal">
+        <!-- Обгортання -->
+        <div class="price-card gsap-fade-up">
           <div class="price-card-header">
             <div class="price-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="24" height="24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg>
             </div>
             <h3>Обгортання</h3>
           </div>
           <ul class="price-list">
             <li><span class="price-name">Авт. сольове детокс-скрабування MILERY</span><span class="price-time">2 год</span><span class="price-val">1200 ₴</span></li>
-            <li><span class="price-name">Обгортання по методиці MAZAKY LEYLA</span><span class="price-time">2 год</span><span class="price-val">2000 ₴</span></li>
+            <li><span class="price-name">Обгортання Mazaky Leyla</span><span class="price-time">2 год</span><span class="price-val">2000 ₴</span></li>
             <li><span class="price-name">Обгортання Green Health</span><span class="price-time">1.5 год</span><span class="price-val">800 ₴</span></li>
             <li><span class="price-name">Обгортання PELOVIT-R</span><span class="price-time">1.5 год</span><span class="price-val">1000 ₴</span></li>
-            <li><span class="price-name">Бандажне обгортання PELO VIT-R</span><span class="price-time">2 год</span><span class="price-val">1500 ₴</span></li>
+            <li><span class="price-name">Бандажне PELO VIT-R</span><span class="price-time">2 год</span><span class="price-val">1500 ₴</span></li>
             <li><span class="price-name">Антицелюлітне бандажне MILERY</span><span class="price-time">2 год</span><span class="price-val">1500 ₴</span></li>
             <li><span class="price-name">Дренажне бандажне MILERY</span><span class="price-time">2 год</span><span class="price-val">1500 ₴</span></li>
           </ul>
-          <a href="#booking" class="price-cta btn btn-outline btn-sm">Записатися →</a>
+          <a href="#contacts" class="price-cta btn btn-dark btn-sm">Записатися →</a>
         </div>
-
       </div>
 
       <!-- Додаткові послуги -->
-      <div class="additional-table-wrap reveal" style="margin-top: 36px;">
+      <div class="additional-table-wrap gsap-fade-up" style="margin-top:32px;">
         <table class="additional-table">
           <thead>
             <tr>
@@ -203,233 +300,150 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Обгортання FR-HAUT</td>
-              <td class="time-cell">2 год</td>
-              <td class="price-cell">1 700 ₴</td>
-            </tr>
-            <tr>
-              <td>Гіпсотерапія (проблемні зони)</td>
-              <td class="time-cell">2 год</td>
-              <td class="price-cell">2 200 ₴</td>
-            </tr>
-            <tr>
-              <td>Парафінотерапія BRUNOVASSARI</td>
-              <td class="time-cell">1.5 год</td>
-              <td class="price-cell">800 ₴</td>
-            </tr>
-            <tr>
-              <td>Обгортання + Wood масаж</td>
-              <td class="time-cell">2 год</td>
-              <td class="price-cell">1 200 ₴</td>
-            </tr>
-            <tr>
-              <td>Пресотерапія (апаратний лімфодренаж)</td>
-              <td class="time-cell">30–50 хв</td>
-              <td class="price-cell">450 ₴</td>
-            </tr>
-            <tr>
-              <td>Апаратний вібро масаж</td>
-              <td class="time-cell">1 год</td>
-              <td class="price-cell">700 ₴</td>
-            </tr>
-            <tr>
-              <td>Міостимуляція (1 зона)</td>
-              <td class="time-cell">20 хв</td>
-              <td class="price-cell">200 ₴</td>
-            </tr>
-            <tr>
-              <td>Карамельний масаж + обгортання</td>
-              <td class="time-cell">120 хв</td>
-              <td class="price-cell">1 200 ₴</td>
-            </tr>
-            <tr>
-              <td>Карамельний масаж</td>
-              <td class="time-cell">50 хв</td>
-              <td class="price-cell">600 ₴</td>
-            </tr>
-            <tr>
-              <td>Карамельний пілінг</td>
-              <td class="time-cell">30 хв</td>
-              <td class="price-cell">400 ₴</td>
-            </tr>
-            <tr>
-              <td>Дитячий масаж (до 3 р.)</td>
-              <td class="time-cell">30 хв</td>
-              <td class="price-cell">600 ₴</td>
-            </tr>
-            <tr>
-              <td>Дитячий масаж (до 11 р.)</td>
-              <td class="time-cell">30 хв</td>
-              <td class="price-cell">600 ₴</td>
-            </tr>
-            <tr>
-              <td>Дитячий масаж (від 11 р.)</td>
-              <td class="time-cell">40 хв</td>
-              <td class="price-cell">600 ₴</td>
-            </tr>
+            <tr><td>Обгортання FR-HAUT</td><td class="time-cell">2 год</td><td class="price-cell">1 700 ₴</td></tr>
+            <tr><td>Гіпсотерапія (проблемні зони)</td><td class="time-cell">2 год</td><td class="price-cell">2 200 ₴</td></tr>
+            <tr><td>Парафінотерапія BRUNOVASSARI</td><td class="time-cell">1.5 год</td><td class="price-cell">800 ₴</td></tr>
+            <tr><td>Обгортання + Wood масаж</td><td class="time-cell">2 год</td><td class="price-cell">1 200 ₴</td></tr>
+            <tr><td>Пресотерапія (апаратний лімфодренаж)</td><td class="time-cell">30–50 хв</td><td class="price-cell">450 ₴</td></tr>
+            <tr><td>Апаратний вібро масаж</td><td class="time-cell">1 год</td><td class="price-cell">700 ₴</td></tr>
+            <tr><td>Міостимуляція (1 зона)</td><td class="time-cell">20 хв</td><td class="price-cell">200 ₴</td></tr>
+            <tr><td>Карамельний масаж + обгортання</td><td class="time-cell">120 хв</td><td class="price-cell">1 200 ₴</td></tr>
+            <tr><td>Карамельний масаж</td><td class="time-cell">50 хв</td><td class="price-cell">600 ₴</td></tr>
+            <tr><td>Карамельний пілінг</td><td class="time-cell">30 хв</td><td class="price-cell">400 ₴</td></tr>
+            <tr><td>Дитячий масаж (до 3 р.)</td><td class="time-cell">30 хв</td><td class="price-cell">600 ₴</td></tr>
+            <tr><td>Дитячий масаж (до 11 р.)</td><td class="time-cell">30 хв</td><td class="price-cell">600 ₴</td></tr>
+            <tr><td>Дитячий масаж (від 11 р.)</td><td class="time-cell">40 хв</td><td class="price-cell">600 ₴</td></tr>
           </tbody>
         </table>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section class="section about-section" id="about">
-    <div class="container about-grid">
-      <div class="about-media reveal">
-        <img src="assets/images/Знімок екрана 2026-07-14 132122.png" alt="Milerystudio — студія масажу у Вінниці" loading="lazy">
-      </div>
-      <div class="about-content reveal">
-        <h2 class="section-title">Milerystudio — де тіло відновлюється, а душа відпочиває</h2>
-        <p>
-          Ми — студія масажу та тілесних практик у центрі Вінниці, на вул. Театральній 30. Власний бренд косметики MILERY, авторські техніки обгортань і масажу, сертифіковані спеціалісти — це все про нас.
-        </p>
-        <ul class="about-list">
-          <li>Масаж усіх видів — класичний, лікувальний, антицелюлітний, Wood</li>
-          <li>Бандажні обгортання — авторські та по провідних методиках</li>
-          <li>Апаратний масаж: пресотерапія, вібромасаж, міостимуляція</li>
-          <li>Карамельний ліполіз та дитячий масаж</li>
-          <li>Власний бренд косметики ✨MILERY</li>
-          <li>Відкриті Пн–Сб з 09:00 до 20:00</li>
-        </ul>
-        <div class="about-actions">
-          <a href="#booking" class="btn btn-cta">Записатися</a>
-          <a href="https://instagram.com/milerystudio" target="_blank" rel="noopener" class="btn btn-ghost">
-            @milerystudio
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M7 17L17 7M7 7h10v10"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Wave: services (yellow) → reviews (white) -->
+  <div class="wave-wrap" style="background:#FFD200; margin-bottom:-2px;">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,60 C200,10 400,80 600,40 C800,10 1000,70 1200,35 C1350,12 1420,55 1440,45 L1440,90 L0,90 Z" fill="#ffffff"/>
+    </svg>
+  </div>
 
-  <!-- REVIEWS -->
-  <section class="section reviews-section" id="reviews">
+  <!-- ===== REVIEWS ===== -->
+  <section class="reviews-section section" id="reviews">
     <div class="container">
-      <div class="section-head reveal" style="text-align:center; display:flex; flex-direction:column; align-items:center;">
-        <h2 class="section-title">Що кажуть клієнти</h2>
-        <p class="section-desc">5.0 ★ на Google Maps · 18 відгуків від реальних клієнтів</p>
+      <div class="section-head center-head">
+        <span class="section-label gsap-fade-up">Відгуки клієнтів</span>
+        <h2 class="section-title gsap-fade-up">Що кажуть клієнти</h2>
+        <p class="section-desc gsap-fade-up">5.0 ★ на Google Maps · 18 відгуків від реальних клієнтів</p>
       </div>
-
       <div class="reviews-row">
-
-        <div class="review-col reveal">
+        <div class="review-col gsap-scale">
           <div class="review-avatar-placeholder">А</div>
           <div class="stars">★★★★★</div>
-          <p class="review-quote">«Відвідавши студію залишилась в повному захваті! З перших кроків зустрічає неймовірна особлива атмосфера, чистота та естетика, уважна та привітна адміністратор. Процедуру робила Tetiana, фахівець своєї справи, уважна до деталей та до стану...»</p>
+          <p class="review-quote">«Відвідавши студію залишилась в повному захваті! З перших кроків зустрічає неймовірна особлива атмосфера, чистота та естетика, уважна та привітна адміністратор. Процедуру робила Tetiana, фахівець своєї справи, уважна до деталей.»</p>
           <strong class="review-name">Аліса Шевченко</strong>
         </div>
-
-        <div class="review-col reveal">
+        <div class="review-col gsap-scale">
           <div class="review-avatar-placeholder">Т</div>
           <div class="stars">★★★★★</div>
           <p class="review-quote">«Дякую Milerystudio за професіоналізм, за різноманітність видів масажу за потребами та на будь-який смак. Дівчата хороші масажисти, фахівці своєї справи, які люблять свою роботу.»</p>
           <strong class="review-name">Татьяна Семенова</strong>
         </div>
-
-        <div class="review-col reveal">
+        <div class="review-col gsap-scale">
           <div class="review-avatar-placeholder">★</div>
           <div class="stars">★★★★★</div>
           <p class="review-quote">«Отримала справжнє задоволення! Година неймовірного релаксу — це круто. Після сеансу тіло максимально розслаблене, а в голові — повний спокій. Дуже приємна атмосфера та чудовий сервіс!»</p>
           <strong class="review-name">Клієнт Milerystudio</strong>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- BOOKING -->
-  <section class="section booking-section" id="booking">
-    <div class="booking-bg">
-      <img src="assets/images/Знімок екрана 2026-07-14 132122.png" alt="" loading="lazy">
-      <div class="booking-scrim"></div>
-    </div>
-    <div class="ghost-watermark" aria-hidden="true">MILERY</div>
+  <!-- Wave: reviews (white) → contacts (cream) -->
+  <div class="wave-wrap" style="background:#ffffff; margin-bottom:-2px;">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,30 C300,90 600,0 900,55 C1100,90 1300,20 1440,50 L1440,90 L0,90 Z" fill="#fafaf7"/>
+    </svg>
+  </div>
 
-    <div class="container booking-inner reveal">
-      <div class="booking-logo">
-        <img src="assets/images/лого.png" alt="Milerystudio логотип">
+  <!-- ===== CONTACTS ===== -->
+  <section class="contacts-section section" id="contacts">
+    <div class="container">
+      <div class="section-head center-head">
+        <span class="section-label gsap-fade-up">Де нас знайти</span>
+        <h2 class="section-title gsap-fade-up">Контакти</h2>
       </div>
-      <h2 class="section-title center">Запишіться на процедуру сьогодні</h2>
-      <p class="section-desc center">Залиште заявку — майстер зв'яжеться з вами найближчим часом.</p>
+      <div class="contacts-grid">
+        <div class="map-wrap gsap-fade-left">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2538.7!2d28.4620909!3d49.2318601!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x472d5bc04767e8ff%3A0x1e2aa4cc22b01a69!2sMilerystudio!5e0!3m2!1suk!2sua!4v1"
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" title="Milerystudio — Вінниця"></iframe>
+        </div>
+        <div class="contacts-info gsap-fade-right">
+          <div>
+            <h3>Milerystudio <span>· Вінниця</span></h3>
+            <dl>
+              <div class="info-row">
+                <dt>Адреса</dt>
+                <dd>вул. Театральна, 30, Вінниця, 21000</dd>
+              </div>
+              <div class="info-row">
+                <dt>Телефон</dt>
+                <dd><a href="tel:+380985920595">098 592 05 95</a></dd>
+              </div>
+              <div class="info-row">
+                <dt>Графік роботи</dt>
+                <dd>Пн–Сб: 09:00–20:00</dd>
+              </div>
+              <div class="info-row">
+                <dt>Google рейтинг</dt>
+                <dd>⭐ 5.0 · 18 відгуків</dd>
+              </div>
+            </dl>
 
-      <form class="booking-form" id="bookingForm" novalidate>
-        <div class="form-row">
-          <div class="field">
-            <label for="f-name">Ім'я*</label>
-            <input type="text" id="f-name" name="name" autocomplete="name" placeholder="Ваше ім'я" required>
-            <span class="field-error" role="alert"></span>
-          </div>
-          <div class="field">
-            <label for="f-phone">Телефон*</label>
-            <input type="tel" id="f-phone" name="phone" autocomplete="tel" placeholder="+380 XX XXX XX XX" required>
-            <span class="field-error" role="alert"></span>
+            <!-- Social contact squares -->
+            <div class="social-contacts" style="margin-top:24px;">
+              <a href="https://instagram.com/milerystudio" target="_blank" rel="noopener" class="social-card" id="sc-ig">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                Instagram
+              </a>
+              <a href="https://t.me/milerystudio" target="_blank" rel="noopener" class="social-card" id="sc-tg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26"><path d="M21 5L2 12.5l7 1M21 5l-4 14-8-5.5M21 5L9 13.5m0 0V19l3-2.5"/></svg>
+                Telegram
+              </a>
+              <a href="viber://chat?number=%2B380985920595" class="social-card" id="sc-vb">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26"><path d="M5.4 3.2C4 3.7 2.3 5.8 2 7.6c-.7 4.5 1.4 9 5.4 11.7 1.4.9 3 1.5 4.6 1.7v2l2.4-2.4c4.5-.7 7.8-4.5 7.6-9C21.8 6.3 18 2.5 13.4 2c-2.6-.3-5.5.2-8 1.2z"/><path d="M9 8.5c.4 1 .8 2 1.4 2.9.8 1.2 1.9 2.3 3.1 3.1.9.6 1.9 1 2.9 1.4"/></svg>
+                Viber
+              </a>
+              <a href="tel:+380985920595" class="social-card" id="sc-ph">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Дзвінок
+              </a>
+              <a href="https://www.google.com/maps/place/Milerystudio" target="_blank" rel="noopener" class="social-card" id="sc-map" style="grid-column: span 1;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Маршрут
+              </a>
+              <a href="https://g.page/r/milerystudio/review" target="_blank" rel="noopener" class="social-card" id="sc-review">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                Відгук
+              </a>
+            </div>
           </div>
         </div>
-        <div class="field">
-          <label for="f-comment">Яку процедуру хочете?</label>
-          <textarea id="f-comment" name="comment" rows="3" placeholder="Наприклад: масаж загальний 1.5 год, або бандажне обгортання MILERY"></textarea>
-        </div>
-        <button type="submit" class="btn btn-cta btn-block" id="bookingSubmit">Записатися</button>
-        <p class="booking-status" id="bookingStatus" role="status" aria-live="polite"></p>
-      </form>
-
-      <p class="booking-secondary">
-        або зателефонуйте: <a href="tel:+380985920595">098 592 05 95</a>
-        · <a href="https://instagram.com/milerystudio" target="_blank" rel="noopener">@milerystudio в Instagram</a>
-      </p>
-    </div>
-  </section>
-
-  <!-- MAP / CONTACTS -->
-  <section class="section contacts-section" id="contacts">
-    <div class="container contacts-grid">
-      <div class="map-wrap reveal">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2538.7!2d28.4620909!3d49.2318601!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x472d5bc04767e8ff%3A0x1e2aa4cc22b01a69!2sMilerystudio!5e0!3m2!1suk!2sua!4v1"
-          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade" title="Milerystudio на карті у Вінниці"></iframe>
-      </div>
-      <div class="contacts-info reveal">
-        <h3>Milerystudio</h3>
-        <dl>
-          <div class="info-row">
-            <dt>Адреса</dt>
-            <dd>вул. Театральна, 30, Вінниця, 21000</dd>
-          </div>
-          <div class="info-row">
-            <dt>Телефон</dt>
-            <dd><a href="tel:+380985920595">098 592 05 95</a></dd>
-          </div>
-          <div class="info-row">
-            <dt>Instagram</dt>
-            <dd><a href="https://instagram.com/milerystudio" target="_blank" rel="noopener">@milerystudio</a></dd>
-          </div>
-          <div class="info-row">
-            <dt>Графік роботи</dt>
-            <dd>Пн–Сб: 09:00–20:00</dd>
-          </div>
-          <div class="info-row">
-            <dt>Google рейтинг</dt>
-            <dd>⭐ 5.0 (18 відгуків)</dd>
-          </div>
-        </dl>
-        <a href="https://www.google.com/maps/place/Milerystudio/@49.2318601,28.4620909,17z" target="_blank" rel="noopener" class="btn btn-cta">Прокласти маршрут →</a>
       </div>
     </div>
   </section>
 
 </main>
 
+<!-- ===== FOOTER ===== -->
 <footer class="site-footer">
   <div class="container footer-inner">
-    <a href="#top" class="logo">
-      <span class="logo-mark" id="logoMarkFooter">
-        <img src="assets/images/лого.png" alt="Milerystudio логотип">
-      </span>
-      <span class="logo-text"><strong>Milery</strong>studio</span>
-    </a>
+    <div class="footer-logo">
+      <div class="footer-logo-avatar">
+        <img src="assets/images/лого.png" alt="Milerystudio">
+      </div>
+      <div class="footer-logo-text"><span>Milery</span>studio</div>
+    </div>
     <nav class="footer-nav">
       <a href="#services">Послуги</a>
       <a href="#about">Про нас</a>
@@ -439,6 +453,9 @@
     <div class="footer-socials">
       <a href="https://instagram.com/milerystudio" target="_blank" rel="noopener" aria-label="Instagram">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="https://t.me/milerystudio" target="_blank" rel="noopener" aria-label="Telegram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 5L2 12.5l7 1M21 5l-4 14-8-5.5M21 5L9 13.5m0 0V19l3-2.5"/></svg>
       </a>
       <a href="tel:+380985920595" aria-label="Телефон">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -451,10 +468,23 @@
   </div>
 </footer>
 
+<!-- Floating cart button -->
+<button class="cart-btn" id="cartBtn" aria-label="Записатися">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+  </svg>
+  <span class="cart-badge">→</span>
+</button>
+
+<!-- Mobile CTA -->
 <a href="tel:+380985920595" class="mobile-cta">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
   Записатися
 </a>
+
+<!-- GSAP CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 <script src="assets/js/config.js"></script>
 <script src="assets/js/main.js"></script>

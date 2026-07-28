@@ -1,4 +1,5 @@
 (() => {
+  // ===== Header scroll =====
   const header = document.getElementById('siteHeader');
   const burger = document.getElementById('burgerBtn');
   const mobileNav = document.getElementById('mobileNav');
@@ -9,13 +10,13 @@
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
+  // ===== Burger menu =====
   burger.addEventListener('click', () => {
     const isOpen = mobileNav.classList.toggle('open');
     burger.classList.toggle('active', isOpen);
     burger.setAttribute('aria-expanded', String(isOpen));
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
-
   mobileNav.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
       mobileNav.classList.remove('open');
@@ -25,145 +26,276 @@
     });
   });
 
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const revealTargets = document.querySelectorAll('.reveal');
-
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    revealTargets.forEach((el) => el.classList.add('is-visible'));
-  } else {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-
-    revealTargets.forEach((el) => observer.observe(el));
-  }
-
-  // ===== Gallery / Team slider =====
-  const track = document.getElementById('galleryTrack');
-  if (track) {
-    const dotsWrap = document.getElementById('galleryDots');
-    const prevBtn = document.getElementById('galleryPrev');
-    const nextBtn = document.getElementById('galleryNext');
-    const slides = Array.from(track.children);
-
-    slides.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.setAttribute('role', 'tab');
-      dot.setAttribute('aria-label', `Слайд ${i + 1}`);
-      dot.addEventListener('click', () => slides[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }));
-      dotsWrap.appendChild(dot);
+  // ===== Cart button → scroll to contacts =====
+  const cartBtn = document.getElementById('cartBtn');
+  if (cartBtn) {
+    cartBtn.addEventListener('click', () => {
+      document.getElementById('contacts')?.scrollIntoView({ behavior: 'smooth' });
     });
-    const dots = Array.from(dotsWrap.children);
-
-    const updateActive = () => {
-      const trackRect = track.getBoundingClientRect();
-      let closestIndex = 0;
-      let closestDist = Infinity;
-      slides.forEach((slide, i) => {
-        const dist = Math.abs(slide.getBoundingClientRect().left - trackRect.left);
-        if (dist < closestDist) { closestDist = dist; closestIndex = i; }
-      });
-      dots.forEach((d, i) => d.classList.toggle('active', i === closestIndex));
-    };
-    updateActive();
-    track.addEventListener('scroll', () => {
-      window.requestAnimationFrame(updateActive);
-    }, { passive: true });
-
-    const scrollByStep = (dir) => {
-      const step = slides[0].getBoundingClientRect().width + 18;
-      track.scrollBy({ left: step * dir, behavior: 'smooth' });
-    };
-    prevBtn.addEventListener('click', () => scrollByStep(-1));
-    nextBtn.addEventListener('click', () => scrollByStep(1));
   }
 
-  // ===== Booking form -> Telegram =====
-  const form = document.getElementById('bookingForm');
-  if (!form) return;
-
-  const submitBtn = form.querySelector('button[type="submit"]');
-  const statusEl = document.getElementById('bookingStatus');
-  const cfg = window.SITE_CONFIG || {};
-
-  const setFieldError = (field, message) => {
-    field.setAttribute('aria-invalid', message ? 'true' : 'false');
-    const errorEl = field.parentElement.querySelector('.field-error');
-    if (errorEl) errorEl.textContent = message || '';
-  };
-
-  form.querySelectorAll('input, textarea').forEach((field) => {
-    field.addEventListener('input', () => setFieldError(field, ''));
-  });
-
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-
-    const name = form.name.value.trim();
-    const phone = form.phone.value.trim();
-    const master = form.master ? form.master.value.trim() : '';
-    const comment = form.comment.value.trim();
-
-    let firstInvalid = null;
-
-    if (!name) {
-      setFieldError(form.name, "Вкажіть, будь ласка, ваше ім'я");
-      firstInvalid = firstInvalid || form.name;
-    }
-    if (!phone) {
-      setFieldError(form.phone, 'Вкажіть номер телефону');
-      firstInvalid = firstInvalid || form.phone;
-    } else if (!/^[+0-9][0-9\s()-]{6,}$/.test(phone)) {
-      setFieldError(form.phone, 'Перевірте формат номера');
-      firstInvalid = firstInvalid || form.phone;
-    }
-
-    if (firstInvalid) {
-      firstInvalid.focus();
+  // ===== Wait for GSAP =====
+  function initGSAP() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+      // Fallback: show all elements
+      document.querySelectorAll('.gsap-fade-up, .gsap-fade-left, .gsap-fade-right, .gsap-fade-in, .gsap-scale').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
       return;
     }
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Надсилаємо заявку…';
-    statusEl.textContent = '';
-    statusEl.className = 'booking-status';
+    gsap.registerPlugin(ScrollTrigger);
 
-    const text = [
-      '💆 Нова заявка з сайту Студія масажу «Масаж+»',
-      '',
-      `Ім'я: ${name}`,
-      `Телефон: ${phone}`,
-      `Майстер: ${master || '—'}`,
-      `Побажання: ${comment || '—'}`
-    ].join('\n');
-
-    try {
-      if (!cfg.telegramBotToken || cfg.telegramBotToken.includes('PASTE_')) {
-        throw new Error('not-configured');
+    // ─── Hero parallax ───
+    gsap.to('#heroBgImg', {
+      yPercent: 28,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 1.5
       }
+    });
 
-      const response = await fetch(`https://api.telegram.org/bot${cfg.telegramBotToken}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: cfg.telegramChatId, text })
+    // ─── Hero elements stagger ───
+    gsap.fromTo('.hero-badge', { opacity: 0, y: 30 }, {
+      opacity: 1, y: 0, duration: 0.8, delay: 0.2, ease: 'power3.out'
+    });
+    gsap.fromTo('.hero-title', { opacity: 0, y: 50 }, {
+      opacity: 1, y: 0, duration: 1.0, delay: 0.45, ease: 'power3.out'
+    });
+    gsap.fromTo('.hero-sub', { opacity: 0, y: 35 }, {
+      opacity: 1, y: 0, duration: 0.9, delay: 0.7, ease: 'power3.out'
+    });
+    gsap.fromTo('.hero-actions', { opacity: 0, y: 25 }, {
+      opacity: 1, y: 0, duration: 0.8, delay: 0.95, ease: 'power3.out'
+    });
+    gsap.fromTo('.hero-meta', { opacity: 0 }, {
+      opacity: 1, duration: 0.8, delay: 1.2, ease: 'power2.out'
+    });
+
+    // ─── Trust bar items ───
+    gsap.utils.toArray('#trust .trust-item').forEach((el, i) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1, y: 0, duration: 0.7, delay: i * 0.12,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '#trust',
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    });
+
+    // ─── About photos stagger with scale ───
+    gsap.utils.toArray('.about-photo').forEach((el, i) => {
+      gsap.fromTo(el,
+        { opacity: 0, scale: 0.85, y: 30 },
+        {
+          opacity: 1, scale: 1, y: 0,
+          duration: 0.85,
+          delay: i * 0.15,
+          ease: 'back.out(1.4)',
+          scrollTrigger: {
+            trigger: '.about-photos',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    });
+
+    // ─── About content fade left ───
+    gsap.utils.toArray('.about-content > *').forEach((el, i) => {
+      gsap.fromTo(el,
+        { opacity: 0, x: 40 },
+        {
+          opacity: 1, x: 0,
+          duration: 0.7,
+          delay: i * 0.1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.about-content',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    });
+
+    // ─── Services heading ───
+    gsap.utils.toArray('#services .section-label, #services .section-title, #services .section-desc').forEach((el, i) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1, y: 0, duration: 0.6, delay: i * 0.1, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' }
+        }
+      );
+    });
+
+    // ─── Price cards ───
+    gsap.utils.toArray('.price-card').forEach((el, i) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 60, scale: 0.92 },
+        {
+          opacity: 1, y: 0, scale: 1,
+          duration: 0.75,
+          delay: i * 0.15,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.price-grid',
+            start: 'top 82%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    });
+
+    // ─── Additional table ───
+    gsap.fromTo('.additional-table-wrap',
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+        scrollTrigger: { trigger: '.additional-table-wrap', start: 'top 88%', toggleActions: 'play none none reverse' }
+      }
+    );
+
+    // ─── Review cards ───
+    gsap.utils.toArray('.review-col').forEach((el, i) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 50, scale: 0.9 },
+        {
+          opacity: 1, y: 0, scale: 1,
+          duration: 0.8,
+          delay: i * 0.18,
+          ease: 'back.out(1.2)',
+          scrollTrigger: {
+            trigger: '.reviews-row',
+            start: 'top 82%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    });
+
+    // ─── Reviews heading ───
+    gsap.utils.toArray('#reviews .section-head > *').forEach((el, i) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1, y: 0, duration: 0.6, delay: i * 0.1, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' }
+        }
+      );
+    });
+
+    // ─── Contacts ───
+    gsap.fromTo('.map-wrap',
+      { opacity: 0, x: -60 },
+      {
+        opacity: 1, x: 0, duration: 0.9, ease: 'power3.out',
+        scrollTrigger: { trigger: '.contacts-grid', start: 'top 82%', toggleActions: 'play none none reverse' }
+      }
+    );
+    gsap.fromTo('.contacts-info',
+      { opacity: 0, x: 60 },
+      {
+        opacity: 1, x: 0, duration: 0.9, delay: 0.15, ease: 'power3.out',
+        scrollTrigger: { trigger: '.contacts-grid', start: 'top 82%', toggleActions: 'play none none reverse' }
+      }
+    );
+
+    // ─── Social cards stagger ───
+    gsap.utils.toArray('.social-card').forEach((el, i) => {
+      gsap.fromTo(el,
+        { opacity: 0, scale: 0.8, y: 20 },
+        {
+          opacity: 1, scale: 1, y: 0,
+          duration: 0.5,
+          delay: i * 0.08,
+          ease: 'back.out(1.6)',
+          scrollTrigger: {
+            trigger: '.social-contacts',
+            start: 'top 88%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    });
+
+    // ─── Wave dividers reveal ───
+    gsap.utils.toArray('.wave-wrap').forEach(el => {
+      gsap.fromTo(el,
+        { opacity: 0 },
+        {
+          opacity: 1, duration: 0.8,
+          scrollTrigger: { trigger: el, start: 'top 95%', toggleActions: 'play none none none' }
+        }
+      );
+    });
+
+    // ─── Contacts heading ───
+    gsap.utils.toArray('#contacts .section-head > *').forEach((el, i) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1, y: 0, duration: 0.6, delay: i * 0.1, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' }
+        }
+      );
+    });
+
+    // ─── Cart button entrance ───
+    gsap.fromTo('.cart-btn',
+      { opacity: 0, scale: 0, rotate: -45 },
+      { opacity: 1, scale: 1, rotate: 0, duration: 0.7, delay: 2.5, ease: 'back.out(1.7)' }
+    );
+
+    // ─── Header social squares pulse on hover ───
+    document.querySelectorAll('.social-sq').forEach(sq => {
+      sq.addEventListener('mouseenter', () => {
+        gsap.to(sq, { scale: 1.15, duration: 0.2, ease: 'back.out(2)' });
       });
+      sq.addEventListener('mouseleave', () => {
+        gsap.to(sq, { scale: 1, duration: 0.3, ease: 'power2.out' });
+      });
+    });
 
-      if (!response.ok) throw new Error('bad-response');
+    // ─── Price card hover tilt ───
+    document.querySelectorAll('.price-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        gsap.to(card, { rotateY: x * 6, rotateX: -y * 4, duration: 0.4, ease: 'power2.out', transformPerspective: 800 });
+      });
+      card.addEventListener('mouseleave', () => {
+        gsap.to(card, { rotateY: 0, rotateX: 0, duration: 0.5, ease: 'power2.out' });
+      });
+    });
 
-      form.reset();
-      statusEl.textContent = "Дякуємо! Ми зв'яжемося з вами найближчим часом для підтвердження запису.";
-      statusEl.className = 'booking-status success';
-    } catch (err) {
-      statusEl.innerHTML = `Не вдалося надіслати заявку. Зателефонуйте напряму: <a href="tel:${cfg.phone}">${cfg.phoneDisplay}</a>`;
-      statusEl.className = 'booking-status error';
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Записатися на масаж';
-    }
-  });
+    // ─── Logo bounce ───
+    gsap.to('.logo-avatar', {
+      y: -4,
+      duration: 1.8,
+      ease: 'sine.inOut',
+      yoyo: true,
+      repeat: -1
+    });
+
+  }
+
+  // Init GSAP when page is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => setTimeout(initGSAP, 100));
+  } else {
+    setTimeout(initGSAP, 100);
+  }
+
 })();
