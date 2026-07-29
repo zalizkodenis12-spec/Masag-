@@ -362,7 +362,8 @@ function validateCheckoutForm() {
   // Name
   const nameErr = document.getElementById('checkoutNameErr');
   const nameVal = nameEl.value.trim();
-  if (!nameVal || nameVal.length < 2 || /^[\d\W]+$/.test(nameVal)) {
+  // Перевірка: не пусте, мінімум 2 символи, і містить хоча б одну літеру
+  if (!nameVal || nameVal.length < 2 || !/[a-zA-Zа-яА-ЯіІїЇєЄґҐ]/.test(nameVal)) {
     nameErr.textContent = "Введіть коректне ім\u2019я (мінімум 2 літери)";
     nameEl.classList.add('input-error');
     valid = false;

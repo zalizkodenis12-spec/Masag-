@@ -226,12 +226,12 @@ h1,h2,h3{font-family:var(--font-display)}
 .prod-back{display:flex;align-items:center;gap:8px;font-family:var(--font-ui);font-size:13px;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-secondary);background:none;border:none;cursor:pointer;transition:color var(--tr)}
 .prod-back:hover{color:var(--text-primary)}
 .prod-back svg{width:18px;height:18px}
-.prod-body{max-width:480px;margin:0 auto;padding:0 0 80px}
+.prod-body{max-width:960px;margin:40px auto 80px;padding:0 24px;display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:center}
 /* Фото у стилі catalog-item-img-wrap */
-.prod-img-full{width:100%;aspect-ratio:3/4;background:#f0ede6;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.prod-img-full{width:100%;aspect-ratio:3/4;background:#f0ede6;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:24px}
 .prod-img-full .catalog-item-placeholder{height:100%;min-height:320px;width:100%}
 /* Контент під фото */
-.prod-info{padding:20px 20px 0}
+.prod-info{padding:0}
 .prod-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
 .prod-tag{padding:4px 12px;border-radius:999px;background:rgba(255,210,0,0.18);color:var(--text-secondary);font-family:var(--font-ui);font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase}
 .prod-name{font-family:var(--font-display);font-size:clamp(1.5rem,4vw,2.2rem);font-weight:700;line-height:1.1;margin-bottom:10px;color:var(--text-primary)}
@@ -498,8 +498,8 @@ h1,h2,h3{font-family:var(--font-display)}
 
   /* --- PRODUCT DETAIL --- */
   .prod-header{padding:12px 16px}
-  .prod-body{max-width:100%;padding:0 0 100px}
-  .prod-img-full{aspect-ratio:4/5}
+  .prod-body{max-width:100%;margin:0;padding:0 0 100px;grid-template-columns:1fr;gap:0}
+  .prod-img-full{aspect-ratio:4/5;border-radius:0}
   .prod-info{padding:16px 16px 0}
   .prod-name{font-size:clamp(1.3rem,5vw,1.8rem)}
   .prod-desc{font-size:14px}
