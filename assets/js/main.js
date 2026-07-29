@@ -77,9 +77,6 @@ function updateCartBadges() {
     mobCount.textContent = total;
     mobCount.classList.toggle('visible', total > 0);
   }
-  // Текст мобільного кошика
-  const mobLabel = document.getElementById('mobCartLabel');
-  if (mobLabel) mobLabel.textContent = total > 0 ? `${total}` : 'Кошик';
 }
 
 function showToast(name) {
