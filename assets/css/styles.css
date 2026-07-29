@@ -419,12 +419,15 @@ h1,h2,h3{font-family:var(--font-display)}
   .header-right{display:flex !important;justify-content:flex-end;gap:0}
   .header-call{display:none}
   .header-right .btn{display:none}
-  .cart-btn-hdr{width:40px;height:40px;border-radius:10px}
+  .cart-btn-hdr{display:none !important} /* Приховуємо на мобільному, бо є нижня панель */
 
   /* --- MOBILE NAV --- */
   .mobile-nav{gap:14px;padding:20px}
   .mobile-nav a{font-size:26px}
+  .mobile-nav a.btn-dark{color:#fff}
+  .mobile-nav a.btn-cta{color:var(--text-on-yellow)}
   .mobile-nav .btn{width:80vw;max-width:300px}
+  .about-actions{justify-content:center} /* Центруємо кнопки під текстом про нас */
 
   /* --- BODY SPACING --- */
   body{padding-bottom:0}
@@ -522,10 +525,20 @@ h1,h2,h3{font-family:var(--font-display)}
   .reviews-section{padding:52px 0}
   .reviews-row{
     display:flex;
-    flex-direction:column;
+    flex-direction:row;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
     gap:14px;
+    padding-bottom:12px;
+    scrollbar-width:none;
   }
-  .review-col{padding:24px 20px;border-radius:20px}
+  .reviews-row::-webkit-scrollbar{display:none}
+  .review-col{
+    min-width:85vw;
+    scroll-snap-align:center;
+    padding:24px 20px;
+    border-radius:20px;
+  }
   .review-avatar-placeholder{width:58px;height:58px;font-size:20px}
   .review-quote{font-size:13.5px}
 
