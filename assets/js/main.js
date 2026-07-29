@@ -106,10 +106,9 @@ function openCatalog(cat) {
   renderCatalogItems(cat, '');
   catSearch.value = '';
   catOverlay.classList.add('open');
-  // Показуємо/ховаємо пошук для товарів
+  // Завжди показуємо пошук
   const searchWrap = document.querySelector('.cat-search-wrap');
-  if (searchWrap) searchWrap.style.display = cat === 'products' ? 'none' : '';
-  if (cat !== 'products') catSearch.focus();
+  if (searchWrap) searchWrap.style.display = '';
 }
 
 function closeCatalog() {
