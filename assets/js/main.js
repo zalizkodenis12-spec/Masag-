@@ -71,6 +71,15 @@ function updateCartBadges() {
     el.textContent = total;
     el.classList.toggle('visible', total > 0);
   });
+  // Мобільний лічильник
+  const mobCount = document.getElementById('mobCartCount');
+  if (mobCount) {
+    mobCount.textContent = total;
+    mobCount.classList.toggle('visible', total > 0);
+  }
+  // Текст мобільного кошика
+  const mobLabel = document.getElementById('mobCartLabel');
+  if (mobLabel) mobLabel.textContent = total > 0 ? `${total}` : 'Кошик';
 }
 
 function showToast(name) {
@@ -339,6 +348,10 @@ document.getElementById('checkoutBackBtn').addEventListener('click', closeChecko
 
 // Cart header button opens drawer
 document.getElementById('cartBtnHdr').addEventListener('click', openCartDrawer);
+
+// Mobile bottom nav cart button
+const mobNavCart = document.getElementById('mobNavCart');
+if (mobNavCart) mobNavCart.addEventListener('click', openCartDrawer);
 
 // ===== Form validation helpers =====
 function validateCheckoutForm() {
