@@ -188,7 +188,7 @@
           <p class="cat-card-sub">35+ процедур для тіла</p>
         </div>
         <div class="cat-card-img-wrap">
-          <img src="assets/images/studio1.png" alt="Послуги Milerystudio" class="cat-card-img" loading="lazy">
+          <img src="assets/images/фото для категорії (Послуги).png" alt="Послуги Milerystudio" class="cat-card-img" loading="lazy">
         </div>
         <div class="btn btn-dark btn-block">Перейти до послуг</div>
       </div>
@@ -199,7 +199,7 @@
           <p class="cat-card-sub">Косметика MILERY</p>
         </div>
         <div class="cat-card-img-wrap">
-          <img src="assets/images/logo.png" alt="Товари MILERY" class="cat-card-img" style="object-fit:contain" loading="lazy">
+          <img src="assets/images/фото для категорії (Товари).png" alt="Товари MILERY" class="cat-card-img" loading="lazy">
         </div>
         <div class="btn btn-dark btn-block">Перейти до товарів</div>
       </div>
@@ -275,7 +275,7 @@
           </div>
         </div>
         <h4 class="stat-name">Процедур щомісяця</h4>
-        <p class="stat-sub">Довіра сотень клієнтів по всій Вінниці</p>
+        <p class="stat-sub">Десятки задоволених клієнтів щомісяця</p>
       </div>
     </div>
   </div>
@@ -474,10 +474,12 @@
       <div class="checkout-field">
         <label class="checkout-label">Ваше ім'я *</label>
         <input type="text" id="checkoutName" class="checkout-input" placeholder="Олександр" required>
+        <span class="checkout-field-err" id="checkoutNameErr"></span>
       </div>
       <div class="checkout-field">
         <label class="checkout-label">Телефон *</label>
         <input type="tel" id="checkoutPhone" class="checkout-input" placeholder="+380 97 000 0000" required>
+        <span class="checkout-field-err" id="checkoutPhoneErr"></span>
       </div>
       <div class="checkout-field">
         <label class="checkout-label">Побажання (необов'язково)</label>
@@ -490,6 +492,17 @@
 
 <!-- Cart toast -->
 <div class="cart-toast" id="cartToast" aria-live="polite"></div>
+
+<!-- ===== ORDER SUCCESS MODAL ===== -->
+<div class="order-success-modal" id="orderSuccessModal" aria-live="assertive" role="alert">
+  <div class="order-success-inner">
+    <div class="order-success-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    </div>
+    <h2 class="order-success-title">Дякуємо за покупку!</h2>
+    <p class="order-success-sub">Зв'яжемось з вами найближчим часом</p>
+  </div>
+</div>
 
 <!-- Mobile CTA -->
 <a href="tel:+380985920595" class="mobile-cta" aria-label="Зателефонувати">

@@ -175,23 +175,19 @@ function openProduct(id) {
   const item = allItems.find(i => i.id === id);
   if (!item) return;
   const prodBody = document.getElementById('prodBody');
-  
-  const placeholder = `
-    <div class="prod-photo-placeholder">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-      <span>Фото незабаром</span>
-    </div>
-  `;
 
   prodBody.innerHTML = `
-    <div class="prod-photo-wrap">
-      ${placeholder}
+    <div class="catalog-item-img-wrap prod-img-full">
+      <div class="catalog-item-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        <span>Фото незабаром</span>
+      </div>
     </div>
     <div class="prod-info">
       <div class="prod-tags">
         ${item.tags.map(t => `<span class="prod-tag">${t}</span>`).join('')}
       </div>
-      <h2 class="prod-name">${item.name}</h2>
+      <h1 class="prod-name">${item.name}</h1>
       ${item.time !== '—' ? `
       <div class="prod-time-row">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
@@ -199,17 +195,18 @@ function openProduct(id) {
       </div>` : ''}
       <p class="prod-desc">${item.desc}</p>
       <div class="prod-price-row">
-        <div class="prod-price">${item.price} <small>₴</small></div>
+        <div class="catalog-item-price prod-price-big">${item.price}<small>₴</small></div>
       </div>
-      <button class="prod-add-btn" data-add="${item.id}">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <button class="catalog-item-btn prod-add-btn-full" data-add="${item.id}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         В кошик
       </button>
     </div>
   `;
   prodBody.querySelector('[data-add]').addEventListener('click', () => {
     addToCart(item.id);
-    gsap.to('.prod-add-btn', { scale: 1.05, duration: 0.12, yoyo: true, repeat: 1 });
+    const btn = prodBody.querySelector('.prod-add-btn-full');
+    if (typeof gsap !== 'undefined') gsap.to(btn, { scale: 1.05, duration: 0.12, yoyo: true, repeat: 1 });
   });
   prodDetail.classList.add('open');
 }
@@ -343,62 +340,121 @@ document.getElementById('checkoutBackBtn').addEventListener('click', closeChecko
 // Cart header button opens drawer
 document.getElementById('cartBtnHdr').addEventListener('click', openCartDrawer);
 
+// ===== Form validation helpers =====
+function validateCheckoutForm() {
+  const nameEl  = document.getElementById('checkoutName');
+  const phoneEl = document.getElementById('checkoutPhone');
+  let valid = true;
+
+  // Name
+  const nameErr = document.getElementById('checkoutNameErr');
+  const nameVal = nameEl.value.trim();
+  if (!nameVal || nameVal.length < 2 || /^[\d\W]+$/.test(nameVal)) {
+    nameErr.textContent = 'Введіть коректне ім'я (мінімум 2 літери)';
+    nameEl.classList.add('input-error');
+    valid = false;
+  } else {
+    nameErr.textContent = '';
+    nameEl.classList.remove('input-error');
+  }
+
+  // Phone: +380XXXXXXXXX or 0XXXXXXXXX (9 digits after code)
+  const phoneErr = document.getElementById('checkoutPhoneErr');
+  const phoneVal = phoneEl.value.trim().replace(/\s/g, '');
+  const phoneRx = /^(\+380|380|0)\d{9}$/;
+  if (!phoneRx.test(phoneVal)) {
+    phoneErr.textContent = 'Введіть номер у форматі +380XXXXXXXXX або 0XXXXXXXXX';
+    phoneEl.classList.add('input-error');
+    valid = false;
+  } else {
+    phoneErr.textContent = '';
+    phoneEl.classList.remove('input-error');
+  }
+
+  return valid;
+}
+
+// Live validation on input
+document.getElementById('checkoutName').addEventListener('input', validateCheckoutForm);
+document.getElementById('checkoutPhone').addEventListener('input', validateCheckoutForm);
+
+// ===== Success modal =====
+function showSuccessModal() {
+  const modal = document.getElementById('orderSuccessModal');
+  if (!modal) return;
+  modal.classList.add('show');
+  setTimeout(() => {
+    modal.classList.add('fade-out');
+    setTimeout(() => {
+      modal.classList.remove('show', 'fade-out');
+      // Close all overlays and return to main page
+      checkoutOverlay.classList.remove('open');
+      closeCartDrawer();
+      document.body.style.overflow = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 700);
+  }, 3000);
+}
+
 // Telegram bot form submission
+const BOT_TOKEN = window.SITE_CONFIG && window.SITE_CONFIG.telegramBotToken !== 'PASTE_YOUR_BOT_TOKEN_HERE'
+  ? window.SITE_CONFIG.telegramBotToken : 'PASTE_YOUR_BOT_TOKEN_HERE';
+const CHAT_ID = window.SITE_CONFIG && window.SITE_CONFIG.telegramChatId !== 'PASTE_YOUR_CHAT_ID_HERE'
+  ? window.SITE_CONFIG.telegramChatId : 'PASTE_YOUR_CHAT_ID_HERE';
+
 checkoutForm.addEventListener('submit', async (e) => {
   e.preventDefault();
-  
-  // Вставте ваші токени нижче:
-  const BOT_TOKEN = 'YOUR_BOT_TOKEN_HERE'; 
-  const CHAT_ID = 'YOUR_CHAT_ID_HERE';
-  
-  const name = document.getElementById('checkoutName').value;
-  const phone = document.getElementById('checkoutPhone').value;
-  const comment = document.getElementById('checkoutComment').value;
-  
-  let orderText = `🛍 *Нове замовлення Milerystudio*\\n\\n`;
-  orderText += `👤 *Ім'я:* ${name}\\n`;
-  orderText += `📞 *Телефон:* ${phone}\\n`;
-  if (comment) orderText += `💬 *Коментар:* ${comment}\\n\\n`;
-  
+
+  if (!validateCheckoutForm()) return;
+
+  const name    = document.getElementById('checkoutName').value.trim();
+  const phone   = document.getElementById('checkoutPhone').value.trim();
+  const comment = document.getElementById('checkoutComment').value.trim();
+
+  // Build Telegram message
   let total = 0;
+  let itemsText = '';
   cart.forEach(item => {
-    const sum = item.price * (item.qty||1);
+    const sum = item.price * (item.qty || 1);
     total += sum;
-    orderText += `▪️ ${item.name} x${item.qty||1} — ${sum} ₴\\n`;
+    itemsText += `- ${item.name} × ${item.qty || 1} = ${sum} ₴\n`;
   });
-  orderText += `\\n💰 *Разом:* ${total} ₴`;
-  
+
+  const msgText =
+    `🛒 Нова заявка — Масажна студія Milerystudio\n\n` +
+    `📦 Товари:\n${itemsText}\n` +
+    `💰 Сума: ${total} ₴\n\n` +
+    `👤 Ім'я: ${name}\n` +
+    `📞 Телефон: ${phone}\n` +
+    `💬 Побажання: ${comment || '—'}`;
+
   const submitBtn = document.getElementById('checkoutSubmitBtn');
-  const ogText = submitBtn.innerText;
-  submitBtn.innerText = 'Відправка...';
+  const ogText = submitBtn.textContent;
+  submitBtn.textContent = 'Відправка...';
   submitBtn.disabled = true;
-  
-  if (BOT_TOKEN !== 'YOUR_BOT_TOKEN_HERE') {
+
+  if (BOT_TOKEN !== 'PASTE_YOUR_BOT_TOKEN_HERE') {
     try {
       await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: CHAT_ID,
-          text: orderText,
-          parse_mode: 'Markdown'
-        })
+        body: JSON.stringify({ chat_id: CHAT_ID, text: msgText })
       });
     } catch(err) {
       console.error('Помилка відправки в Telegram', err);
     }
   } else {
-    console.warn("TELEGRAM BOT NOT CONFIGURED! Add BOT_TOKEN and CHAT_ID in main.js.");
+    console.warn('Telegram не налаштовано. Підстав BOT_TOKEN і CHAT_ID в config.js');
   }
-  
+
   cart = [];
   saveCart();
-  showToast('Замовлення успішно прийнято!');
-  closeCheckout();
   checkoutForm.reset();
-  
-  submitBtn.innerText = ogText;
+  submitBtn.textContent = ogText;
   submitBtn.disabled = false;
+
+  // Show full-screen success modal
+  showSuccessModal();
 });
 
 // Close overlays on Escape
@@ -512,7 +568,7 @@ function initGSAP() {
     { circleId:'sc1', numId:'sn1', value:95,  max:100, format: v => Math.round(v) },
     { circleId:'sc2', numId:'sn2', value:100, max:100, format: v => (v > 0 ? (v * 5 / 100).toFixed(1) : '0.0') },
     { circleId:'sc3', numId:'sn3', value:100, max:100, format: v => Math.round(v * 6 / 100) },
-    { circleId:'sc4', numId:'sn4', value:100, max:100, format: v => Math.round(v * 500 / 100) },
+    { circleId:'sc4', numId:'sn4', value:100, max:100, format: v => Math.round(v * 50 / 100) },
   ];
   const circumference = 2 * Math.PI * 55; // r=55
 
