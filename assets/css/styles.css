@@ -388,8 +388,9 @@ h1,h2,h3{font-family:var(--font-display)}
 .footer-socials a:hover{background:var(--text-primary);border-color:var(--text-primary);color:var(--accent)}
 .footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:18px 0;border-top:1px solid rgba(22,18,10,0.12);color:rgba(22,18,10,0.4);font-size:12px}
 
-/* Mobile CTA */
+/* Mobile CTA & Bottom Nav */
 .mobile-cta{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);z-index:90;display:none;align-items:center;gap:8px;background:var(--text-primary);color:var(--accent);padding:13px 26px;border-radius:999px;font-family:var(--font-ui);font-weight:900;font-size:13.5px;letter-spacing:0.04em;box-shadow:0 8px 28px rgba(0,0,0,0.25);white-space:nowrap}
+.mobile-bottom-bar{display:none} /* Сховано на десктопі за замовчуванням */
 
 /* ===== TABLET ===== */
 @media(max-width:1024px){
